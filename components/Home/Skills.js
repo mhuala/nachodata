@@ -21,7 +21,7 @@ const Skills = () => {
                     <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"></path></svg>                </div>
                   <div className="flex-grow ">
                     <h2 className=" text-xl title-font font-medium mb-3">Webdesign</h2>
-                    <p className="leading-relaxed text-sm text-justify">Donner du goût ? de la couleur aux applications, je le fais afin de rendre vos sites attrayants ?. Avant de devenir webdesigner, depuis tout petit j'étais déjà familier à la couleur et du dessin.</p>
+                    <p className="leading-relaxed text-sm text-justify">Donner du goût ? de la couleur aux applications, je le fais afin de rendre vos sites attrayants ?. Avant de devenir webdesigner, depuis tout petit j&apos;étais déjà familier à la couleur et du dessin.</p>
                   </div>
                 </div>
               </div>
@@ -35,7 +35,7 @@ const Skills = () => {
                   <div className="flex-grow">
                     <h2 className=" text-xl title-font font-medium mb-3">Intégration web</h2>
                     <p className="leading-relaxed text-sm text-justify">
-                    Donner du goût ? de la couleur aux applications, je le fais afin de rendre vos sites attrayants ?. Avant de devenir webdesigner, depuis tout petit j'étais déjà familier à la couleur et du dessin. 
+                    Donner du goût ? de la couleur aux applications, je le fais afin de rendre vos sites attrayants ?. Avant de devenir webdesigner, depuis tout petit j&apos;étais déjà familier à la couleur et du dessin. 
                     </p>
                   </div>
                 </div>
@@ -50,7 +50,7 @@ const Skills = () => {
                   <div className="flex-grow">
                     <h2 className=" text-xl title-font font-medium mb-3">Developpement Back-end</h2>
                     <p className="leading-relaxed text-sm text-justify">
-                     Grâce à Php et ces frameworks (Larave, Symfoni, Slim), je peux vous réaliser un site dynamique c'est-à-dire qui interagie avec votre base de données ?. Nous pouvons essayer.
+                     Grâce à Php et ces frameworks (Larave, Symfoni, Slim), je peux vous réaliser un site dynamique c&apos;est-à-dire qui interagie avec votre base de données ?. Nous pouvons essayer.
                     </p>
                   </div>
                 </div>

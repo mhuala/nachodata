@@ -50,11 +50,11 @@ const PostPage = async (props) => {
                         style= {{backgroundImage: `url(${postContent.metadata.bannerURL})`}}
                         >
                         <div className="w-full h-full flex  justify-center items-center backdrop-blur-sm rounded-t-2xl">
-                            <h1 className="font-gothic text-fuchsia-50 text-2xl bg-gray-800 italic"><span className="text-purple-600 text-6xl font-mono">"</span>{postContent.metadata.title}<span className="text-purple-600 text-6xl font-mono">"</span></h1>
+                            <h1 className="font-gothic text-fuchsia-50 text-2xl bg-gray-800 italic"><span className="text-purple-600 text-6xl font-mono">&quot;</span>{postContent.metadata.title}<span className="text-purple-600 text-6xl font-mono">&quot;</span></h1>
                         </div>
                     </div>
             <section className="text-white flex flex-row items-center justify-center mx-auto space-x-4 w-full py-2 px-10">
-                <Image src="https://images.generated.photos/8OAGobSgGzf4uK93LKdKefvnnrv4ODAV0CaWrSILXEI/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDczODU0LmpwZw.jpg" width="0" height="0" className=" rounded-full h-10 w-10"/>
+                <Image alt="avatar" src="https://images.generated.photos/8OAGobSgGzf4uK93LKdKefvnnrv4ODAV0CaWrSILXEI/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDczODU0LmpwZw.jpg" width="0" height="0" className=" rounded-full h-10 w-10"/>
                 <span className="font-mono w-full flex gap-2">By <h6 className="underline">{postContent.metadata.author}</h6>· {postContent.metadata.date} ·<TimeIcon/> 2 min read</span>
             </section>
             <h1 className="text-gray-200 italic font-light text-lg px-10">{postContent.metadata.description}</h1>
@@ -65,7 +65,7 @@ const PostPage = async (props) => {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 6h.008v.008H6V6z" />
                 </svg>
                 <span className="text-gray-500 font-semibold">Tags :</span>
-                {postContent.metadata.tags.map((tag) => { return (<h1 className="text-gray-500 font-thin italic">{tag}</h1>) })}</span>
+                {postContent.metadata.tags.map((tag) => { return (<h1 className="text-gray-500 font-thin italic" key={tag}>{tag}</h1>) })}</span>
             <hr className="border-2 border-[#CE3F73] drop-shadow-xl rounded-full mt-2" />
             {/* POST CONTENT */}
             <div className="text-white text-lg font-mono mt-12 pb-8 mb-12 px-10">
