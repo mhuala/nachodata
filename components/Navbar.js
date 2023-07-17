@@ -8,7 +8,7 @@ export default function Navbar() {
     const [isClicked, setisClicked] = useState(false);
 
     return (
-        <nav className="navbar ">
+        <nav className="bg-gray-800">
             <div className="flex mx-auto px-2 h-24  lg:h-1/10">
                 <nav className="py-6 flex w-full items-center mx-auto justify-between px-4 md:px-16 2xl:px-48">
                     {/* PRIMARY NAVBAR */}
@@ -21,7 +21,7 @@ export default function Navbar() {
                     <div className=" hidden md:flex flex-row justify-center items-center space-x-8">
                         {/* First section */}
                         <div className="flex flex-row items-center space-x-8">
-                            <Link href="/region" className="clickeable">
+                            <Link href="/about" className="clickeable">
                                 <span className="text-[#9EACE1] font-bold font-rale lg:text-lg">
                                     Sobre mí
                                 </span>
@@ -87,7 +87,7 @@ export default function Navbar() {
                     <span className="text-center font-semibold">Sobre mí</span>
                 </Link>
                 <Link
-                    href="/region"
+                    href="/about"
                     className="clickeable text-center  block mx-auto w-11/12"
                 >
                     <span className="text-center font-semibold">Contacto</span>
