@@ -5,7 +5,6 @@ import avatar from "../public/webImages/avatar.png"
 import getPostMetadata from "@/utils/utils"
 
 import Image from 'next/image'
-import Link from 'next/link'
 
 // CARD COMPETENCES
 //https://tailwindcomponents.com/component/skills-card
@@ -14,7 +13,7 @@ export default function HomePage() {
   const posts = getPostMetadata()
   return (
 
-    <div className="animate__fadeIn flex flex-col items-center justify-center">
+    <div className=" flex flex-col items-center justify-center">
     {/* HERO */}
     <main className="mt-16 lg:mt-24 px-2">
       {/* CONTAINER */}
