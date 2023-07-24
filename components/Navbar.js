@@ -1,20 +1,33 @@
-"use client"
+"use client";
 import React, { useState } from "react";
-import Link from 'next/link'
-import Image from 'next/image'
+import Link from "next/link";
+import Image from "next/image";
+import { AboutIcon, ContactIcon, ProjectsIcon } from "@/public/icons/icons";
 import logo from "../public/webImages/logo.png";
+
+// TODO:
+// 1. Animación svg menu movil al abrir se transforma en X y al ceerrar vuelve normal
+// 2. Hover en opciones de menú movil animado
+// 3. Revisar fuentes
+// 4. Ver que al hacer click en una página del menú movil este se retraiga
 
 export default function Navbar() {
     const [isClicked, setisClicked] = useState(false);
 
     return (
-        <nav className="bg-gray-800">
+        <nav className="bg-gray-800 rounded-b-xl">
             <div className="flex mx-auto px-2 h-24  lg:h-1/10">
                 <nav className="py-6 flex w-full items-center mx-auto justify-between px-4 md:px-16 2xl:px-48">
                     {/* PRIMARY NAVBAR */}
                     <div className="flex flex-row  items-center mx-auto md:mx-0 px-6 md:justify-none">
                         <Link href="/" className="clickeable">
-                            <Image src={logo} alt="logo" width="0" height="0" className=" h-12 w-48 sm:h-16 sm:w-64" />
+                            <Image
+                                src={logo}
+                                alt="logo"
+                                width="0"
+                                height="0"
+                                className=" h-12 w-48 sm:h-16 sm:w-64"
+                            />
                         </Link>
                     </div>
                     {/* SECONDARY NAVBAR */}
@@ -39,12 +52,21 @@ export default function Navbar() {
                                 href="/search"
                                 className="text-white flex items-center space-x-2"
                             >
-
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
-                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" />
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke="currentColor"
+                                    className="w-6 h-6"
+                                >
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
+                                    />
                                 </svg>
                                 <span className="font-rale">Proyectos</span>
-
                             </Link>
                         </button>
                     </div>
@@ -76,26 +98,29 @@ export default function Navbar() {
             <div
                 className={
                     isClicked
-                        ? "flex flex-col md:hidden space-y-1 bg-gradient-to-b from-[#0D0D0D] to-gray-800 text-[#9EACE1] text-xl bg-brand w-full rounded-b-xl"
+                        ? "flex flex-col md:hidden space-y-1 bg-gray-800 text-[#9EACE1] text-xl bg-brand w-full rounded-b-xl"
                         : "hidden"
                 }
             >
                 <Link
                     href="/home"
-                    className="clickeable text-center  block mx-auto w-11/12"
+                    className="flex hover:bg-slate-600 p-2 space-x-4 items-center clickeable text-center mx-auto w-full ml-6"
                 >
+                    <AboutIcon />
                     <span className="text-center font-semibold">Sobre mí</span>
                 </Link>
                 <Link
                     href="/about"
-                    className="clickeable text-center  block mx-auto w-11/12"
+                    className="flex hover:bg-slate-600 p-2 space-x-4 items-center clickeable text-center mx-auto w-full ml-6"
                 >
+                    <ContactIcon />
                     <span className="text-center font-semibold">Contacto</span>
                 </Link>
                 <Link
                     href="/search"
-                    className="clickeable text-center  block mx-auto w-11/12"
+                    className="flex hover:bg-slate-600 p-2 space-x-4 items-center clickeable text-center mx-auto w-full ml-6"
                 >
+                    <ProjectsIcon />
                     <span className="text-center font-semibold">Proyectos</span>
                 </Link>
             </div>

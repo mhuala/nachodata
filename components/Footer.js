@@ -2,7 +2,7 @@ import Link from "next/link"
 
 const Footer = () => {
   return (
-    <div className="footer z-10 bg-gray-800">
+    <div className="footer z-10 bg-gray-800 sticky bottom-">
 <div className="container mx-auto py-4 px-5 flex flex-wrap flex-col sm:flex-row">
   <p className="text-gray-300 text-sm text-center sm:text-left">© 2023  —
     <Link href="https://twitter.com/knyttneve" rel="noopener noreferrer" className="text-gray-400 ml-1" target="_blank">@mhuala</Link>

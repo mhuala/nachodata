@@ -21,7 +21,7 @@ export default async function RootLayout({ children }) {
         <meta charset="UTF-8" />
       </Head>
       <Script src="https://unpkg.com/pattern.css" rel="stylesheet" strategy="beforeInteractive"/>
-      <body className='bg-gray-900 bg-dotted-spacing-[40px] bg-dotted-slate-700 flex-col h-screen justify-between'> 
+      <body className='bg-gray-900 bg-dotted-spacing-[40px] bg-dotted-slate-700 flex-col min-h-screen justify-between'> 
         <Navbar/>
         <div className='mb-auto'>
         {children}

@@ -1,19 +1,20 @@
-"use client"
+"use client";
 import Markdown from "markdown-to-jsx";
-import Code from "./Code"
+import Code from "./Markdown/Code";
 
-const MarkdownContent = ({children}) => {
-
+const MarkdownContent = ({ children }) => {
     return (
-        <Markdown options= {{
-            overrides:{
-                Code:{
-                    component:Code
-                }
-            }
-        }}>
-        {children}
+        <Markdown
+            options={{
+                overrides: {
+                    Code: {
+                        component: Code,
+                    },
+                },
+            }}
+        >
+            {children}
         </Markdown>
     );
-}
-export default MarkdownContent; 
+};
+export default MarkdownContent;
