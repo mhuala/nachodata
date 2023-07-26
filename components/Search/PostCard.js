@@ -32,7 +32,10 @@ const PostCard = ({
     bannerURL,
 }) => {
     return (
-        <div className="flex flex-col text-white border-gray-300 border rounded-xl text-center px-4 py-4 justify-between h-full bg-pagegray space-y-2">
+        <div
+            className=" animate-fade-left
+        flex flex-col text-white shadow-md hover:border rounded-xl text-center px-4 py-4 justify-between h-full bg-pagegray space-y-2"
+        >
             {/* <!-- IMAGE -->  */}
             <div className="relative overflow-hidden cursor-pointer rounded-xl ">
                 <Image
@@ -60,37 +63,25 @@ const PostCard = ({
                     </div>
                 </div>
             </div>
-            {/* <!-- TECHNOLOGIES-->  */}
-
-            {/* <!-- TITLE -->  */}
             <Link
                 href={`/posts/${slug}`}
                 passHref
-                className="text-left sm:text-xl lg:text-2xl text-indigo-400 font-rale"
+                className="text-left sm:text-xl lg:text-2xl text-indigo-400 font-rale font-bold h-16"
             >
                 {title}
             </Link>
             {/* <!-- CONTENT -->  */}
-            <p className="line-clamp-3 text-sm sm:text-base lg:text-lg text-gray-300 text-left overflow-ellipsis h-16">
+            <p className="line-clamp-3 text-sm sm:text-base lg:text-lg text-gray-300 text-left overflow-ellipsis h-24">
                 {description}
             </p>
 
+            {/* <!-- TITLE -->  */}
+
             {/* <!-- FINAL SECTION -->  */}
-            <section className="flex flex-row items-center justify-center mx-auto space-x-4 w-full py-2">
-                <span className="font-mono w-full flex flex-col sm:flex-row text-xs sm:text-sm md:text-base gap-2">
-                    <div className="flex gap-2">
-                        <Image
-                            src="https://images.generated.photos/8OAGobSgGzf4uK93LKdKefvnnrv4ODAV0CaWrSILXEI/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDczODU0LmpwZw.jpg"
-                            width="0"
-                            height="0"
-                            className=" rounded-full h-6 w-6 sm:h-10 sm:w-10"
-                        />
-                        By <h6 className="underline">{author}</h6>· {date} ·
-                    </div>
-                    <div className="flex gap-2">
-                        <TimeIcon /> 2 min read
-                    </div>
-                </span>
+            <section className="flex flex-row items-center w-full">
+                <div className="flex justify-start gap-2">
+                    <TimeIcon /> 2 min read
+                </div>
             </section>
         </div>
     );
