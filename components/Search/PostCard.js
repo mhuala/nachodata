@@ -3,21 +3,17 @@ import Link from "next/link";
 import Image from "next/image";
 
 const IMAGES_DICTIONARY = {
-    python: "https://w7.pngwing.com/pngs/780/811/png-transparent-logo-python-logos-and-brands-icon.png",
-    react: "https://icons-for-free.com/download-icon-logo+react+react+js+icon-1320184811840217251_512.png",
-    fastapi:
-        "https://w7.pngwing.com/pngs/141/126/png-transparent-fastapi-hd-logo.png",
-    mongodb: "https://www.pngrepo.com/png/331488/512/mongodb.png",
-    chatgpt:
-        "https://upload.wikimedia.org/wikipedia/commons/thumb/0/04/ChatGPT_logo.svg/2048px-ChatGPT_logo.svg.png",
-    pinecone: "https://i.ibb.co/XSsJf5c/54333248-removebg-preview.png",
-    pandas: "https://pandas.pydata.org/static/Image/favicon_white.ico",
-    scikit: "https://www.cilans.net/wp-content/uploads/2019/09/scikit-learn-logo-notext-1.png",
-    numpy: "https://user-images.githubusercontent.com/67586773/105040771-43887300-5a88-11eb-9f01-bee100b9ef22.png",
-    powerbi:
-        "https://i.ibb.co/YBLdP7c/Captura-desde-2023-04-25-15-17-17-removebg-preview.png",
-    seaborn:
-        "https://seeklogo.com/images/S/seaborn-logo-244EB2DEC5-seeklogo.com.png",
+    python: "/webImages/python.png",
+    react: "/webImages/react.png",
+    fastapi: "/webImages/fastapi.png",
+    mongodb: "/webImages/mongodb.png",
+    chatgpt: "/webImages/python.png",
+    pinecone: "/webImages/pinecone.png",
+    pandas: "/webImages/pandas.png",
+    scikit: "/webImages/scikit.png",
+    numpy: "/webImages/numpy.png",
+    powerbi: "/webImages/powerbi.png",
+    seaborn: "/webImages/seaborn.png",
 };
 
 // TODO
@@ -56,7 +52,7 @@ const PostCard = ({
                                         alt={tag}
                                         width="0"
                                         height="0"
-                                        className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 xl:h-10 xl:w-10 rounded-full"
+                                        className="h-4 w-4 sm:h-6 sm:w-6 md:h-8 md:w-8 xl:h-10 xl:w-10 rounded-full grayscale"
                                     />
                                 </div>
                             );

@@ -2,8 +2,9 @@
 import NotFound from "@/components/Posts/NotFound";
 import PostCard from "@/components/Search/PostCard";
 import SearchBar from "@/components/Search/SearchBar";
-
 import { useState } from "react";
+
+// UTILIZAR LINE-CLAMP para truncar texto
 
 const SearchPage = ({ params }) => {
     const posts = params.newProp;
@@ -53,8 +54,10 @@ const SearchPage = ({ params }) => {
 
     return (
         <div className="flex flex-col mt-10 mx-auto min-h-screen">
-            <SearchBar onSearchChange={onSearchChange} search={search} />
-            <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12 px-12 py-16 w-full">
+            <div className="w-5/6 rounded-lg bg-gray-700 items-center mx-auto flex">
+                <SearchBar onSearchChange={onSearchChange} search={search} />
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12 px-16 py-16 w-full">
                 {filteredPosts().length >= 1 ? (
                     filteredPosts().map((post) => {
                         return (

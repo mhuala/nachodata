@@ -22,7 +22,7 @@ const PostContent = ({ children }) => {
     );
 
     return (
-        <>
+        <div className="font-sans">
             {/* CONTENIDO post */}
             <Markdown
                 options={{
@@ -95,7 +95,7 @@ const PostContent = ({ children }) => {
                     </svg>
                 </button>
             </div>
-        </>
+        </div>
     );
 };
 export default PostContent;

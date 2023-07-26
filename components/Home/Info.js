@@ -51,9 +51,8 @@ const Info = () => {
                     </div>
                 </div>
             </div>
-            <p className="w-5/6 text-center lg:w-full text-white  md:text-base xl:text-xl 2xl:text-2xl">
-                {" "}
-                Quiero ayudarte a tomar decisiones{" "}
+            <p className="mt-6 text-lg leading-8 text-gray-300">
+                Quiero ayudarte a tomar decisiones
                 <b>
                     <u>impulsadas por datos</u>
                 </b>
@@ -63,32 +62,15 @@ const Info = () => {
             <div className="flex flex-col mt-12 mb-12 lg:mt-32 items-center  w-full ">
                 <div className="max-w-7xl h-16 ">
                     <div className="relative group">
-                        <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-                        <div className="relative px-7 py-6 bg-gray-300 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
-                            <div className="flex items-center justify-center ">
-                                <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="h-6 w-6  text-pink-500 rotate-45 hover:rotate-0"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                >
-                                    <path
-                                        strokeLinecap="round"
-                                        strokeLinejoin="round"
-                                        strokeWidth="2"
-                                        d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"
-                                    />
-                                </svg>
-                                <Link
-                                    href="/search"
-                                    className="text-lg text-slate-800 transition duration-200 pl-4"
-                                    target="_blank"
-                                >
-                                    Read Article →
-                                </Link>
+                        <button className="group relative h-12 w-48 overflow-hidden rounded-lg bg-white text-lg shadow">
+                            <div className="absolute -inset-1 bg-gradient-to-r from-purple-600 to-pink-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                            <div className="relative px-7 py-6 bg-gray-300 ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
+                                <div className="absolute inset-0 w-3 bg-amber-400 transition-all duration-[250ms] ease-out group-hover:w-full"></div>
+                                <span className="relative text-black group-hover:text-white">
+                                    Hover me!
+                                </span>
                             </div>
-                        </div>
+                        </button>
                     </div>
                 </div>
             </div>
