@@ -5,6 +5,7 @@ const NotFound = () => {
         <div className="grid col-span-1 lg:col-span-2 xl:col-span-3 2xl:col-span-4">
             <div className="flex flex-col mx-auto items-center w-auto lg:flex-row lg:min-h-[60vh] space-y-8">
                 <Image
+                    alt="Not Found"
                     src="/webImages/notfound.png"
                     width={0}
                     height={0}

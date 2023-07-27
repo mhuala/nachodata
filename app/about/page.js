@@ -1,5 +1,6 @@
 import Timeline from "@/components/About/Timeline";
 import Skills from "@/components/About/Skills";
+import Image from "next/image";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
 const benefits = [
     "Competitive salaries",
@@ -31,7 +32,9 @@ export default function About() {
                 <div className="relative isolate -z-10 ">
                     <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 lg:mt-48 mt-24">
                         <div className="mx-auto flex max-w-2xl flex-col gap-10 bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
-                            <img
+                            <Image
+                                width={0}
+                                height={0}
                                 className="h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm"
                                 src="https://images.unsplash.com/photo-1519338381761-c7523edc1f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
                                 alt=""

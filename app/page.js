@@ -1,19 +1,4 @@
-"use client";
-import Info from "@/components/Home/Info";
-
-import avatar from "../public/webImages/avatar.png";
 import Image from "next/image";
-import { useState } from "react";
-
-const stats = [
-    { label: "Business was founded", value: "2012" },
-    { label: "People on the team", value: "120+" },
-    { label: "Users on the platform", value: "250k" },
-    { label: "Paid out to creators", value: "$70M" },
-];
-
-// CARD COMPETENCES
-//https://tailwindcomponents.com/component/skills-card
 
 export default function HomePage() {
     return (
@@ -45,7 +30,9 @@ export default function HomePage() {
                                 {/* LG CONTENT */}
                                 <div className="hidden lg:grid px-6 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
                                     <div className="mx-auto max-w-2xl lg:mx-0">
-                                        <img
+                                        <Image
+                                            width={0}
+                                            height={0}
                                             className="h-11"
                                             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                                             alt="Your Company"
@@ -91,7 +78,9 @@ export default function HomePage() {
                                 {/* SM CONTENT */}
                                 <div className="grid lg:hidden px-6 pb-24 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
                                     <div className="mx-auto max-w-2xl lg:mx-0">
-                                        <img
+                                        <Image
+                                            width={0}
+                                            height={0}
                                             className="h-11"
                                             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                                             alt="Your Company"
