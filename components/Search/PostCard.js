@@ -7,7 +7,7 @@ const IMAGES_DICTIONARY = {
     react: "/webImages/react.png",
     fastapi: "/webImages/fastapi.png",
     mongodb: "/webImages/mongodb.png",
-    chatgpt: "/webImages/python.png",
+    chatgpt: "/webImages/chatgpt.png",
     pinecone: "/webImages/pinecone.png",
     pandas: "/webImages/pandas.png",
     scikit: "/webImages/scikit.png",

@@ -47,7 +47,7 @@ const PostPage = async (props) => {
 
     return (
         <div className="flex flex-col">
-            <div className="mx-auto w-11/12 md:w-10/12 lg:w-9/12 mt-12 bg-slate-700 rounded-t-2xl space-y-6">
+            <div className="mx-auto w-11/12 md:w-10/12 lg:w-9/12 mt-12 bg-[#1F2937] rounded-t-2xl space-y-6">
                 {/* POST INFO */}
                 <div
                     className="w-full h-48 bg-cover bg-center rounded-t-2xl grayscale"
@@ -80,7 +80,7 @@ const PostPage = async (props) => {
                         <h6 className="underline">
                             {postContent.metadata.author}
                         </h6>
-                        · {postContent.metadata.date} ·<TimeIcon /> 2 min read
+                        · {postContent.metadata.date}
                     </span>
                 </section>
                 <h1 className="text-gray-200 italic font-light text-lg px-10">
@@ -125,24 +125,26 @@ const PostPage = async (props) => {
                 </div>
                 {/* RECOMMENDED POSTS */}
             </div>
-            <RecommendedPost
-                title={recommendedPosts.firstPost.title}
-                description={recommendedPosts.firstPost.description}
-                date={recommendedPosts.firstPost.date}
-                slug={recommendedPosts.firstPost.slug}
-                tags={recommendedPosts.firstPost.tags}
-                bannerURL={recommendedPosts.firstPost.bannerURL}
-                author={recommendedPosts.firstPost.author}
-            />
-            <RecommendedPost
-                title={recommendedPosts.secondPost.title}
-                description={recommendedPosts.secondPost.description}
-                date={recommendedPosts.secondPost.date}
-                slug={recommendedPosts.secondPost.slug}
-                tags={recommendedPosts.secondPost.tags}
-                bannerURL={recommendedPosts.secondPost.bannerURL}
-                author={recommendedPosts.secondPost.author}
-            />
+            <div className="flex flex-col lg:flex-row gap-8 mx-auto w-11/12 md:w-10/12 lg:w-9/12 mt-10 mb-10">
+                <RecommendedPost
+                    title={recommendedPosts.firstPost.title}
+                    description={recommendedPosts.firstPost.description}
+                    date={recommendedPosts.firstPost.date}
+                    slug={recommendedPosts.firstPost.slug}
+                    tags={recommendedPosts.firstPost.tags}
+                    bannerURL={recommendedPosts.firstPost.bannerURL}
+                    author={recommendedPosts.firstPost.author}
+                />
+                <RecommendedPost
+                    title={recommendedPosts.secondPost.title}
+                    description={recommendedPosts.secondPost.description}
+                    date={recommendedPosts.secondPost.date}
+                    slug={recommendedPosts.secondPost.slug}
+                    tags={recommendedPosts.secondPost.tags}
+                    bannerURL={recommendedPosts.secondPost.bannerURL}
+                    author={recommendedPosts.secondPost.author}
+                />
+            </div>
         </div>
     );
 };

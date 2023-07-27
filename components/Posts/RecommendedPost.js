@@ -8,50 +8,28 @@ const RecommendedPost = async ({
     bannerURL,
 }) => {
     return (
-        <div className="flex flex-col justify-center">
-            <div className="relative flex flex-col md:flex-row md:space-x-5 space-y-3 md:space-y-0 rounded-xl shadow-lg p-3 max-w-xs md:max-w-3xl mx-auto border border-white bg-white">
-                <div className="w-full md:w-1/3 bg-white grid place-items-center">
-                    <img
-                        src={bannerURL}
-                        alt="tailwind logo"
-                        className="rounded-xl"
-                    />
-                </div>
-                <div className="w-full md:w-2/3 bg-white flex flex-col space-y-2 p-3">
-                    <div className="flex justify-between item-center">
-                        <p className="text-gray-500 font-medium hidden md:block">
-                            Vacations
-                        </p>
-                        <div className="">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5 text-pink-500"
-                                viewBox="0 0 20 20"
-                                fill="currentColor"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                        </div>
-                        <div className="bg-gray-200 px-3 py-1 rounded-full text-xs font-medium text-gray-800 hidden md:block">
-                            Superhost
-                        </div>
-                    </div>
-                    <h3 className="font-black text-gray-800 md:text-3xl text-xl">
-                        {title}
+        <div className="h-96 md:h-72 hover:border hover:border-gray-300 bg-white border rounded-xl shadow-sm sm:flex dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7] max-w-7xl">
+            <div className="flex-shrink-0 relative w-full rounded-t-xl overflow-hidden pt-[40%] sm:rounded-l-xl sm:max-w-[15rem] md:rounded-tr-none md:max-w-xs">
+                <img
+                    className="w-full h-full absolute top-0 left-0 object-cover hover:scale-110 opacity-50 hover:opacity-75 transition duration-300 ease-in-out"
+                    src={bannerURL}
+                    alt="Image Description"
+                />
+            </div>
+            <div className="flex flex-wrap">
+                <div className="p-4 flex flex-col h-full sm:p-7">
+                    <h3 className="text-lg font-bold text-gray-800 dark:text-white">
+                        Card title
                     </h3>
-                    <p className="md:text-lg text-gray-500 text-base">
-                        {description}
+                    <p className="mt-1 text-gray-800 dark:text-gray-400">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
                     </p>
-                    <p className="text-xl font-black text-gray-800">
-                        $110
-                        <span className="font-normal text-gray-600 text-base">
-                            /night
-                        </span>
-                    </p>
+                    <div className="mt-5 sm:mt-auto">
+                        <p className="text-xs text-gray-500 dark:text-gray-500">
+                            Last updated 5 mins ago
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
