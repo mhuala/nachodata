@@ -1,5 +1,9 @@
 import Image from "next/image";
 
+// TO DO
+// 1. FIX WIDTH
+// 2. FIX IMAGE SIZE
+
 const RecommendedPost = async ({
     title,
     date,

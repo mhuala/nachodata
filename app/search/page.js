@@ -1,30 +1,88 @@
 "use client";
+import { useState } from "react";
+import { FilterIcon } from "@/public/icons/icons";
+import Select from "react-select";
+import makeAnimated from "react-select/animated";
 import NotFound from "@/components/Posts/NotFound";
 import PostCard from "@/components/Search/PostCard";
 import SearchBar from "@/components/Search/SearchBar";
-import { useState } from "react";
+
+const options = [
+    { value: "mongodb", label: "Mongo DB" },
+    { value: "react", label: "React JS" },
+    { value: "python", label: "Python" },
+    { value: "chatgpt", label: "ChatGPT" },
+];
 
 // UTILIZAR LINE-CLAMP para truncar texto
 
 const SearchPage = ({ params }) => {
     const posts = params.newProp;
 
-    const filteredPosts = () => {
-        if (search.length === 0) {
-            // Si no hay nada ingresado en el input de busqueda
-            let postsSlice = posts.slice(currentPage, currentPage + 6);
-            return postsSlice.sort((a, b) => {
-                return a.id - b.id;
+    const filterByTagList = (obj_list, tag_list) => {
+        let filteredPosts = [];
+        obj_list.map((obj) => {
+            tag_list.some((tag) => {
+                if (obj.tags.includes(tag.value)) {
+                    filteredPosts.push(obj);
+                }
             });
+        });
+        return filteredPosts;
+    };
+
+    const uniqueElements = (arr) =>
+        arr.filter((value, index, self) => {
+            return self.indexOf(value) == index;
+        });
+
+    const filteredPosts = () => {
+        // Si no hay nada ingresado en el input de busqueda
+        if (search.length === 0) {
+            // Si existen filtros creados
+            if (filterList.length > 0) {
+                let postsFilteredByTag = uniqueElements(
+                    filterByTagList(posts, filterList)
+                );
+                let postsSlice = postsFilteredByTag.slice(
+                    currentPage,
+                    currentPage + 6
+                );
+                return postsSlice.sort((a, b) => {
+                    return a.id - b.id;
+                });
+                // Si no existen filtros
+            } else {
+                let postsSlice = posts.slice(currentPage, currentPage + 6);
+                return postsSlice.sort((a, b) => {
+                    return a.id - b.id;
+                });
+            }
         } else {
             // Si hay algo ingresado en el input de busqueda
-            let filtered = posts.filter((post) =>
+            let postsFilteredBySearch = posts.filter((post) =>
                 post.description.includes(search)
             );
-            if (filtered.length === 0) {
+            if (postsFilteredBySearch.length === 0) {
                 return [];
             }
-            let filteredSlice = filtered.slice(currentPage, currentPage + 6);
+            if (filterList.length !== 0) {
+                let postsFilteredByTag = uniqueElements(
+                    filterByTagList(posts, filterList)
+                );
+                let postsSlice = postsFilteredByTag.slice(
+                    currentPage,
+                    currentPage + 6
+                );
+                return postsSlice.sort((a, b) => {
+                    return a.id - b.id;
+                });
+            }
+
+            let filteredSlice = postsFilteredBySearch.slice(
+                currentPage,
+                currentPage + 6
+            );
             return filteredSlice.sort((a, b) => {
                 return a.id - b.id;
             });
@@ -48,16 +106,52 @@ const SearchPage = ({ params }) => {
         setSearch(target.value);
     };
 
-    // https://www.youtube.com/watch?v=ZoayCCDHFiI
+    const handleOnFilter = (filterList) => {
+        setCurrentPage(0);
+        setFilter(filterList);
+    };
+
     const [currentPage, setCurrentPage] = useState(0);
     const [search, setSearch] = useState("");
+    const [filterList, setFilter] = useState([]);
+
+    const animatedComponents = makeAnimated();
 
     return (
-        <div className="flex flex-col mt-10 mx-auto min-h-screen">
-            <div className="w-5/6 rounded-lg bg-gray-700 items-center mx-auto flex">
+        <div className="flex flex-col mt-10 mx-auto items-center min-h-screen">
+            <div className="w-5/6 rounded-lg bg-gray-700 flex flex-col p-8 gap-6">
+                <div className="flex flex-col items-center mx-auto gap-4">
+                    <h2 className="text-white font-bold text-4xl">
+                        {" "}
+                        Realiza tu busqueda de contenido
+                    </h2>
+                    <span className="text-white px-2">
+                        Lorem ipsum dolor, sit amet consectetur adipisicing
+                        elit. Itaque quae amet quaerat doloremque maiores in
+                        labore consequatur, recusandae expedita, eos obcaecati
+                        illum, eius doloribus? Voluptatibus nostrum odit minima
+                        commodi autem!
+                    </span>
+                </div>
                 <SearchBar onSearchChange={onSearchChange} search={search} />
+                <div className="w-full lg:w-4/5 lg:divide-x-2  flex flex-col lg:flex-row lg:items-center gap-4 px-2 ">
+                    <span className="text-white font-semibold flex flex-row gap-3">
+                        <FilterIcon /> Filters
+                    </span>
+
+                    <div className="px-4 ">
+                        <Select
+                            closeMenuOnSelect={false}
+                            components={animatedComponents}
+                            onChange={handleOnFilter}
+                            value={filterList}
+                            isMulti
+                            options={options}
+                        />
+                    </div>
+                </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12 px-16 py-16 w-full">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12 px-16 py-16 w-11/12">
                 {filteredPosts().length >= 1 ? (
                     filteredPosts().map((post) => {
                         return (
