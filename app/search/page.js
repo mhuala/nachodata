@@ -14,8 +14,6 @@ const options = [
     { value: "chatgpt", label: "ChatGPT" },
 ];
 
-// UTILIZAR LINE-CLAMP para truncar texto
-
 const SearchPage = ({ params }) => {
     const posts = params.newProp;
 
@@ -123,20 +121,18 @@ const SearchPage = ({ params }) => {
                 <div className="flex flex-col items-center mx-auto gap-4">
                     <h2 className="text-white font-bold text-4xl">
                         {" "}
-                        Realiza tu busqueda de contenido
+                        Realiza tu busqueda
                     </h2>
-                    <span className="text-white px-2">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing
-                        elit. Itaque quae amet quaerat doloremque maiores in
-                        labore consequatur, recusandae expedita, eos obcaecati
-                        illum, eius doloribus? Voluptatibus nostrum odit minima
-                        commodi autem!
+                    <span className="text-white  text-xl px-2 italic">
+                        Busca y filtra entre las diferentes publicaciones
+                        existentes según contenido o tipo de tecnologías
+                        utilizadas
                     </span>
                 </div>
                 <SearchBar onSearchChange={onSearchChange} search={search} />
                 <div className="w-full lg:w-4/5 lg:divide-x-2  flex flex-col lg:flex-row lg:items-center gap-4 px-2 ">
                     <span className="text-white font-semibold flex flex-row gap-3">
-                        <FilterIcon /> Filters
+                        <FilterIcon /> Filtros
                     </span>
 
                     <div className="px-4 ">

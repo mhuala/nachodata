@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { AboutIcon, ContactIcon, ProjectsIcon } from "@/public/icons/icons";
-import logo from "../public/webImages/logo.png";
 
 // TODO:
 // 1. Animación svg menu movil al abrir se transforma en X y al ceerrar vuelve normal
@@ -15,20 +14,23 @@ export default function Navbar() {
     const [isClicked, setisClicked] = useState(false);
 
     return (
-        <nav className="bg-gray-800 rounded-b-xl">
+        <nav className="bg-slate-800 rounded-b-xl ">
             <div className="flex mx-auto px-2 h-24  lg:h-1/10">
                 <nav className="py-6 flex w-full items-center mx-auto justify-between px-4 md:px-16 2xl:px-48">
                     {/* PRIMARY NAVBAR */}
-                    <div className="flex flex-row  items-center mx-auto md:mx-0 px-6 md:justify-none">
+                    <div className="flex flex-row gap-2 items-center mx-auto md:mx-0 px-6 md:justify-none">
                         <Link href="/" className="clickeable">
                             <Image
-                                src={logo}
+                                src="webImages/logo.png"
                                 alt="logo"
                                 width="0"
                                 height="0"
-                                className=" h-12 w-48 sm:h-16 sm:w-64"
+                                className=" h-16 w-16"
                             />
                         </Link>
+                        <span className="text-white font-semibold text-2xl">
+                            nachodata
+                        </span>
                     </div>
                     {/* SECONDARY NAVBAR */}
                     <div className=" hidden md:flex flex-row justify-center items-center space-x-8">
@@ -47,7 +49,7 @@ export default function Navbar() {
                         </div>
                         {/* Secondary Section */}
                         <div className="w-0.5 h-6 bg-gray-400 opacity-50"></div>
-                        <button className="transform hover:-translate-y-2 transition-transform duration-500 ease-in-out bg-[conic-gradient(at_left,_var(--tw-gradient-stops))] from-sky-400 to-blue-800 hover:bg-blue-600 rounded-xl px-4 py-2">
+                        <button className="transform hover:-translate-y-2 transition-transform duration-500 ease-in-out bg-gradient-to-t from-indigo-500 to-indigo-700  rounded-xl px-4 py-2">
                             <Link
                                 href="/search"
                                 className="text-white flex items-center space-x-2"

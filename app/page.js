@@ -38,7 +38,11 @@ export default function HomePage() {
                                             alt="Your Company"
                                         />
                                         <h1 className="mt-24 text-4xl font-bold tracking-tight text-gray-200 sm:mt-10 sm:text-6xl">
-                                            Data to enrich your online business
+                                            Soy Nacho Huala,{" "}
+                                            <span className="text-indigo-500">
+                                                {" "}
+                                                analista de datos
+                                            </span>
                                         </h1>
                                         <p className="mt-6 text-lg leading-8 text-gray-100">
                                             Quiero ayudarte a tomar decisiones,{" "}
@@ -51,7 +55,7 @@ export default function HomePage() {
                                                 href="#"
                                                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                             >
-                                                Get started
+                                                Hablemos !
                                             </a>
                                             <a
                                                 href="#"
@@ -66,11 +70,11 @@ export default function HomePage() {
                                     </div>
                                 </div>
                                 {/* SM IMAGE */}
-                                <div className="flex lg:hidden h-full items-center mx-auto justify-center">
+                                <div className="flex lg:hidden h-full items-center mx-auto justify-center m-10">
                                     <Image
                                         width="0"
                                         height="0"
-                                        className="w-[250px] sm:w-96"
+                                        className="w-[300px] sm:w-96"
                                         src="/webImages/avatar.png"
                                         alt="avatar"
                                     />
@@ -85,23 +89,25 @@ export default function HomePage() {
                                             src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
                                             alt="Your Company"
                                         />
-                                        <div className="hidden sm:flex lg:mt-16"></div>
-                                        <h1 className="mt-24 text-4xl font-bold tracking-tight text-gray-200 sm:mt-10 sm:text-6xl">
-                                            Data to enrich your online business
+                                        <h1 className="mt-8 text-4xl font-bold tracking-tight text-gray-200 sm:mt-10 sm:text-6xl">
+                                            Soy Nacho Huala,{" "}
+                                            <span className="text-indigo-500">
+                                                {" "}
+                                                analista de datos
+                                            </span>
                                         </h1>
-                                        <p className="mt-6 text-lg leading-8 text-gray-600">
-                                            Anim aute id magna aliqua ad ad non
-                                            deserunt sunt. Qui irure qui lorem
-                                            cupidatat commodo. Elit sunt amet
-                                            fugiat veniam occaecat fugiat
-                                            aliqua.
+                                        <p className="mt-6 text-lg leading-8 text-gray-100">
+                                            Quiero ayudarte a tomar decisiones,{" "}
+                                            <span className="text-indigo-500 font-bold">
+                                                decisiones basadas en datos
+                                            </span>
                                         </p>
                                         <div className="mt-10 flex items-center gap-x-6">
                                             <a
                                                 href="#"
                                                 className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                             >
-                                                Get started
+                                                Hablemos !
                                             </a>
                                             <a
                                                 href="#"

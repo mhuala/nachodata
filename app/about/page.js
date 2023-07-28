@@ -3,12 +3,12 @@ import Skills from "@/components/About/Skills";
 import Image from "next/image";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
 const benefits = [
-    "Competitive salaries",
-    "Flexible work hours",
-    "30 days of paid vacation",
-    "Annual team retreats",
-    "Benefits for you and your family",
-    "A great work environment",
+    "Responsabilidad",
+    "Autonomía del aprendizaje",
+    "Capcidad de trabajo en equipo",
+    "Resiliencia",
+    "Planificación",
+    "Flexibilidad",
 ];
 
 export default function About() {
@@ -30,7 +30,7 @@ export default function About() {
                 </div>
 
                 <div className="relative isolate -z-10 ">
-                    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 lg:mt-48 mt-24">
+                    <div className="mx-auto max-w-7xl sm:px-6 lg:px-8 lg:mt-36 mt-24">
                         <div className="mx-auto flex max-w-2xl flex-col gap-10 bg-white/5 px-6 py-16 ring-1 ring-white/10 sm:rounded-3xl sm:p-8 lg:mx-0 lg:max-w-none lg:flex-row lg:items-center lg:py-20 xl:gap-x-20 xl:px-20">
                             <Image
                                 width={0}
@@ -41,12 +41,14 @@ export default function About() {
                             />
                             <div className="w-full flex-auto">
                                 <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-                                    Join our team
+                                    Acerca de mi
                                 </h2>
                                 <p className="mt-6 text-lg leading-8 text-gray-300">
-                                    Lorem ipsum dolor sit amet consect
-                                    adipisicing elit. Possimus magnam voluptatum
-                                    cupiditate veritatis in accusamus quisquam.
+                                    Ingeniero Civil Industrial con interés por
+                                    ganar experiencia y apoyar proyectos
+                                    relacionados al análisis de datos poniendo
+                                    en práctica las habilidades y conocimientos
+                                    adquiridos.
                                 </p>
                                 <ul
                                     role="list"
@@ -68,9 +70,9 @@ export default function About() {
                                 <div className="mt-10 flex">
                                     <a
                                         href="#"
-                                        className="text-sm font-semibold leading-6 text-indigo-400"
+                                        className=" bg-slate-200 p-2 rounded-full text-sm font-semibold leading-6 text-indigo-600"
                                     >
-                                        See our job postings{" "}
+                                        Descarga mi CV{" "}
                                         <span aria-hidden="true">&rarr;</span>
                                     </a>
                                 </div>
