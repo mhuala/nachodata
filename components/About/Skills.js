@@ -1,6 +1,6 @@
 const Skills = () => {
     return (
-        <div className="mt-4">
+        <div className="mt-4 animate-fade-left">
             <section className="text-gray-200">
                 <div className="max-w-6xl mx-auto px-5 py-24 ">
                     <div className="text-center mb-20">

@@ -9,12 +9,14 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "@headlessui/react": "^1.7.15",
     "@heroicons/react": "^2.0.18",
     "@mdx-js/loader": "^2.3.0",
     "@mdx-js/react": "^2.3.0",
     "@next/mdx": "^13.3.1",
     "autoprefixer": "10.4.14",
+    "emailjs": "^4.0.2",
     "eslint": "8.39.0",
     "eslint-config-next": "13.3.1",
     "gray-matter": "^4.0.3",

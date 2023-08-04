@@ -36,20 +36,23 @@ export default function Navbar() {
                     <div className=" hidden md:flex flex-row justify-center items-center space-x-8">
                         {/* First section */}
                         <div className="flex flex-row items-center space-x-8">
-                            <Link href="/about" className="clickeable">
+                            <Link href="/about" className="clickeable ">
                                 <span className="text-[#9EACE1] font-bold font-rale lg:text-lg">
-                                    Sobre mí
+                                    ACERCA
                                 </span>
                             </Link>
                             <Link href="/contact" className="clickeable">
                                 <span className="text-[#9EACE1] font-bold font-rale lg:text-lg">
-                                    Contacto
+                                    CONTACTO
                                 </span>
                             </Link>
                         </div>
                         {/* Secondary Section */}
                         <div className="w-0.5 h-6 bg-gray-400 opacity-50"></div>
-                        <button className="transform hover:-translate-y-2 transition-transform duration-500 ease-in-out bg-gradient-to-t from-indigo-500 to-indigo-700  rounded-xl px-4 py-2">
+                        <button
+                            type="submit"
+                            className="flex items-center mx-auto w-full p-3 text-sm font-bold tracking-wide uppercase rounded dark:bg-violet-500 dark:text-gray-900 transform hover:-translate-y-2 transition-transform duration-500 ease-in-out"
+                        >
                             <Link
                                 href="/search"
                                 className="text-white flex items-center space-x-2"
@@ -68,7 +71,7 @@ export default function Navbar() {
                                         d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m5.231 13.481L15 17.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v16.5c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9zm3.75 11.625a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z"
                                     />
                                 </svg>
-                                <span className="font-rale">Proyectos</span>
+                                <span className="">PROYECTOS</span>
                             </Link>
                         </button>
                     </div>

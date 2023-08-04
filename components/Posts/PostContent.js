@@ -22,7 +22,7 @@ const PostContent = ({ children }) => {
     );
 
     return (
-        <div className="font-rale text-xl">
+        <div className="font-sans text-base xl:text-lg 2xl:text-xl">
             {/* CONTENIDO post */}
             <Markdown
                 options={{

@@ -14,7 +14,7 @@ const benefits = [
 export default function About() {
     return (
         <div className="bg-gray-900">
-            <main className="relative isolate">
+            <main className="relative isolate animate-fade-left">
                 {/* Background */}
                 <div
                     className="absolute inset-x-0 top-4 -z-10 flex transform-gpu justify-center overflow-hidden blur-3xl"
@@ -69,8 +69,9 @@ export default function About() {
                                 </ul>
                                 <div className="mt-10 flex">
                                     <a
-                                        href="#"
                                         className=" bg-slate-200 p-2 rounded-full text-sm font-semibold leading-6 text-indigo-600"
+                                        href="/files/cv.txt"
+                                        download
                                     >
                                         Descarga mi CV{" "}
                                         <span aria-hidden="true">&rarr;</span>
