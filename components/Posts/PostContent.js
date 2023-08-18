@@ -12,6 +12,7 @@ import H2 from "../Markdown/H2";
 import H3 from "../Markdown/H3";
 import H4 from "../Markdown/H4";
 import H5 from "../Markdown/H5";
+import Repository from "../Markdown/Repository";
 
 const PostContent = ({ children }) => {
     const [visibleTableOfContent, setVisibleTableOfContent] = useState(false);
@@ -24,6 +25,7 @@ const PostContent = ({ children }) => {
     return (
         <div className="font-sans text-base xl:text-lg 2xl:text-xl">
             {/* CONTENIDO post */}
+            <div className="rounded-full">🤖NOTA: Debido a problemas que <span className="font-bold">cada link</span></div>
             <Markdown
                 options={{
                     overrides: {
@@ -36,6 +38,7 @@ const PostContent = ({ children }) => {
                         PoweBI: { component: PowerBI },
                         Url: { component: Url },
                         YoutubeVIdeo: { component: YoutubeVideo },
+                        Repository: {component: Repository}
                     },
                 }}
             >

@@ -1,0 +1,231 @@
+---
+id: 7
+title: Nombres en la última década Chile
+author: Nacho Huala
+date: 19/04/2020
+tags: [react, mongodb, python]
+description: Analisis de los datos del Registro Civil de la última década.¿Hay curiosidades relevantes?
+bannerURL: https://media.tacdn.com/media/attractions-splice-spp-674x446/07/bd/6f/17.jpg
+---
+
+<H2>¿De qué se trata?</H2> 
+
+Si hay algo cambiante, ligado a la cultura y actualidad son los nombres. Hace poco el Registro Civil lanzó su portal de datos en dónde además de los nombre inscritos por sexo y mes de cada año en el período 2010-2021 y claro, por qué no analizar los datos para prácticar y reforzar técnicas de _Web Scraping_ y _Visualización de datos_.
+
+<H3>Escogiendo el método de scraping:</H3>
+
+Primero siempre es interesante hacer una búsqueda en la página que queremos "scrapear" y ver los siguientes aspectos.
+
+1. Revisar la pestaña "Red" del navegador y ver si se puede localizar la petición que trae como respuesta los datos que necesitamos
+
+2. Ver si los datos solamente son visibles tras la interacción controlada de algun elemento de la página mediante algun framework de JavaScript (JQuery, react, vue, etc.)
+
+En el primer caso hay que tener clara la URL a la cual se le debe hacer la petición HTTP y todos los requisitos para obtener una respuesta exitosa, para esto se debe inspeccionar bien la petición en la pestaña Red del navegador y entender la composición de la petición, generalmente basta con la carga útil (payloads) y los encabezados (headers).
+
+En el segundo corresponde entender cuales interacciones con la interfaz necesita el usuario para llegar a los datos que se necesitan scrapear, es más rapido o intuitivo a la hora de necesitar estar loggeado u otras barreras de seguridad.
+
+Cómo algo didactico se mostrará el scraping utilizando ambas metodologías, siempre es recomendable utilizar un seudocodigo o diagrama de flujo para ordenar en la mente la estructura del código, que muchas veces requiere bastantes anidaciones de ciclos.
+
+<H4> Método 1:</H4>
+
+Al realizar una busqueda con la pestaña _Red_ abierta se puede ver una petición dirigida a la siguiente URL:
+
+**HEADERS.PNG**
+
+<Url
+    callToAction="Página registro civil"
+    href="https://codigo.registrocivil.cl/api/estnombre/ltRanking/"
+></Url>
+
+Se puede observar que las opciones de _Año_ , _Mes_ y _Sexo_ son enviadas como un JSON en la carga útil.
+
+**PAYLOAD.PNG**
+
+Finalmente la petición envía una lista de JSONs con los nombres y la frecuencia de los mismos referentes a los filtros de búsqueda incluidos.
+
+**RESPONSE.PNG**
+
+Una vez visto esto podemos hacer un diagrama de procesos para ordenar el funcionamiento del código antes de escribirlo.
+
+
+**DIAGRAMA FLUJO.PNG**
+
+Primero se importan las librerías a utilizar _Pandas_ será utilizado para crear el archivo .CSV basado en un DataFrame al finalizar de recolectar los datos.
+
+<Code language="python">
+import pandas as pd 
+import requests
+</Code>
+
+Se declara la URL a la que apuntaran las peticiones y también el header, de estructura similar al visto en la primera imagen de esta publicación.
+
+Se crean las listas que contienen las opciones seleccionables en cada búsqueda.
+
+<Code language="python">
+REGISTRO_CIVIL_URL = "https: //codigo.registrocivil.cl/api/estnombre/ltRanking/"
+l = [] 
+headers = {"Content-Type": "application/json",
+           "Accept": "application/json, text/plain",
+           "Accept-Encoding": "gzip, deflate, br",
+           "Accept-Language": "es-ES,es;q=0.9",
+           "Content-Length": "37",
+           "Origin": "https: //estadisticas.sed.srcei.cl",
+           "Referer": "https: //estadisticas.sed.srcei.cl",
+           "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36 OPR/100.0.0.0"}
+# Listas de opciones
+years_list = [str(x) for x in range(2010, 2022)]
+months_list = [str(x) for x in range(1, 13)]
+sex_list = ["F", "M"]
+</Code>
+
+Las peticiones se deberán realizar pasando recursivamente todas las combinaciones de los tres parámetros identificados anteriormente en el payload (_Año_ , _Mes_ y _Sexo_) .
+
+Estas distintas combinacionese forman realizando foor loops para cada lsita que contiene todas las combinaciones, recogiendo así cada respuesta y añadiendola a la lista que posteriomente será en la que se base el DataFrame final.
+
+<Code language="python">
+for year in years_list:
+    for month in months_list:
+        for sex in sex_list:
+            # Payload variable
+            payload = {"year": year, "sex": sex, "month": month}
+            # Envio de petición
+            response = requests.post(REGISTRO_CIVIL_URL, headers=headers, json=payload)
+            # Transformación de respuesta
+            resp_dict = response.json()
+            # Iteración sobre respuesta
+            for data_entry in resp_dict:
+                # Añadir a la lista
+                l.append(
+                    {
+                        "nombre": data_entry["nombre"],
+                        "cantidad": data_entry["cantidad"],
+                        "year": year,
+                        "sex": sex,
+                        "month": month,
+                    }
+                )
+</Code>
+
+Para terminar se crea un DataFrame con los datos recolectados y finalmente se guarda como archivo .CSV
+
+<Code language="python">
+df = pd.DataFrame.from_records(l) 
+df.to_csv(f"Nombres {str(year[0])}-{str(year[-1])}.csv")
+</Code>
+
+<H4> Método 2: </H4>
+
+Acá existen opciones para simular el uso que daría un usuario a un navegador como _Pyppeteer_, _Selenium_ o mi preferido _PlayWright_. Estos paquetes utilizados en lo que uno podría denominar como un y son altamente recomendables y muchas veces la única opción cuando el flujo de procesos para poder realizar el scraping es muy extenso o supone de grandes barreras de seguridad.
+
+De manera similar al primer metodo se parte importando los paquetes a utilizar, en este caso _Pandas_ para la creación de un DataFrame y posterior archivo .CSV y también se utiliza Playwright.
+
+<Code language="python">
+import pandas as pd from playwright.sync_api 
+import sync_playwright
+</Code>
+
+Se declara la URL a la que apuntaran las peticiones y también el header, de estructura similar al visto en la primera imagen de esta publicación.
+
+Se crean las listas que contienen las opciones seleccionables en cada búsqueda
+
+<Code language="python">
+REGISTRO_CIVIL_URL = "https: //estadisticas.sed.srcei.cl/nomrank" 
+l = []
+years_list = [str(x) for x in range(2010, 2022)] 
+months_list = [str(x) for x in range(1, 13)] 
+sex_list = ["F", "M"]
+</Code>
+
+Luego en conjunto con el navegador se deben ir inspeccionando los elementos de la interfaz necesarios para llevar a cabo el flujo de procesos realizado anteriormente, para esto se deben poder localizar los elementos de la manera más cómoda o directa (existen multiples formas de elegir un elemento, se recomienda revisar la [Documentación de Playwright en Python](https://playwright.dev/python/docs/library)).
+
+<Code language="python">
+with syncplaywright() as p:
+    # Configuración de instancia del navegador
+    browser = p.chromium.launch(headless=False)
+    # Creación instancia de nueva página
+    page = browser.new_page()
+    # Redirección a URL deseada
+    page.goto(REGISTRO_CIVIL_URL)
+    for sex in sex_list:
+        # Ubicar y elegir el elemento para seleccionar el sexo
+        page.locator("select >> nth=2").select_option(sex)
+        for year in years_list:
+            # Ubicar y elegir el elemento para seleccionar el año
+            page.locator("select >> nth=0").select_option(year)
+            for month in months_list:
+                # Ubicar y elegir el elemento para seleccionar el mes
+                page.locator("select >> nth=1").select_option(month)
+                # Ubicar el botón "BUSCAR"
+                search_btn = page.query_selector("div>>button")
+                # Clickear el botón "BUSCAR"
+                search_btn.click()
+                # Sleep de 5 segs
+                page.wait_for_timeout(5000)
+                # Guardar en variable el total de páginas a iterar para la busqueda
+                last_page_number = page.query_selector_all("a.paginate_button")[-2].inner_text()
+                # Iterar en todas las páginas
+                for i in range(0, int(last_page_number) - 1):
+                    # Lista con datos de tabla de resultados
+                    data_entries = page.query_selector_all("tbody >> tr")
+                    # Iteración en lista de datos de tabla de resultados
+                    for data in data_entries:
+                        # Extracción de datos relevantes
+                        data_list = data.inner_text().replace("\t", " ").split()
+                        name = data_list[0]
+                        count = data_list[1]
+                        # Anexión de datos a la lista
+                        l.append(
+                            {
+                                "name": name,
+                                "count": count,
+                                "gender": sex,
+                                "year": year,
+                                "month": month,
+                            }
+                        )
+                    # Sleep de 0.25 segs
+                    page.wait_for_timeout(250)
+                    # Tratar de clickear la página siguiente
+                    try:
+                        page.query_selector_all("a.paginate_button")[-1].click()
+                    except:
+                        print("Error")
+                print(
+                    "Pagina {} de {} para datos del año {}".format(
+                        i, last_page_number, year
+                    )
+                )
+</Code>
+
+Finalmente al igual que en el primer metodo se crea un DataFrame con la lista con los datos creados y finalmente un archivo .CSV para posterior utilización.
+
+<Code language="python">
+df = pd.DataFrame.from_records(l)
+df.to_csv(f"Nombres {str(year[0])}-{str(year[-1])}.csv")
+</Code>
+
+# Visualización y análisis:
+
+Una vez visto y obtenidos los datos de cualquiera de ambos métodos podemos analizarlos y responder a priori preguntas como:
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+<Repository repoName="Exportaciones-Los-Rios"/>

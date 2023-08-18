@@ -28,7 +28,7 @@ const Code = ({ children, language }) => {
             <SyntaxHighlighter language={language} style={atomDark}>
                 {children}
             </SyntaxHighlighter>
-            <div className="absolute bottom-0 right-0 z-40 w-auto h-auto bg-slate-400 text-gray-900 font-thin text-sm">
+            <div className="absolute -top-4 left-0 z-40 w-auto h-auto rounded-r-xl bg-slate-300 text-gray-900 font-mono text-sm px-2">
                 {language}
             </div>
         </div>

@@ -1,0 +1,330 @@
+---
+id: 3
+title: Analisis Exportaciones
+author: Nacho Huala
+date: 19/04/2020
+tags: [python, powerbi, pandas]
+description: The USA is a vast country with a lot of places to visit. Here are the 10 best places to visit in the USA.
+bannerURL: https://media.tacdn.com/media/attractions-splice-spp-674x446/07/bd/6f/17.jpg
+---
+
+## IMPORTANTE! :stop_sign:
+
+Antes de la ejecución del código se recomienda cambiar los nombres de los archivos a la siguiente forma, en dónde en vez de los corchetes debería ir el año al que corresponde el archivo.
+
+```shell
+BdExportacionesAño{}.csv
+```
+
+## ¿Qué es la VCR?
+
+Las ventajas comparativas reveladas son un concepto económico que se utiliza para analizar y comprender los patrones de comercio internacional entre países. En esencia, las ventajas comparativas reveladas se basan en la idea de que los países tienden a especializarse en la producción y exportación de bienes y servicios en los que son relativamente más eficientes en comparación con otros países.
+
+Estas ventajas se revelan a través del comercio internacional y se pueden observar en los patrones de las exportaciones de un país en relación con sus competidores extranjeros. Se han usado medidas de ventaja comparativa revelada (VCR) para ayudar a evaluar el potencial de exportación de un país. La VCR indica si un país está en proceso de ampliar los productos en los que tiene potencial comercial, en contraposición a situaciones en las que el número de productos que se pueden exportar de manera competitiva es estático. También puede aportar información útil acerca de posibles perspectivas comerciales con nuevos asociados.En este caso no se analizará a nivel de paises sino de regiones.
+
+[INDICE VCRE](https://www.researchgate.net/publication/272167573_Indice_de_ventaja_comparativa_revelada_un_indicador_del_desempeno_y_de_la_competitividad_productivo-comercial_de_un_pais)
+
+$ VCRe =  ln\left [ \left ( \frac{X_{ij}}{X_{it}} \right )/\left ( \frac{X_{im}}{X_{tm}} \right ) \right ] $
+
+Donde:
+
+-   $X_{ij}$ - Corresponde a las exportaciones del producto $i$ en la región $j$
+
+-   $X_{tj}$ - Corresponde a las exportaciones totales en la región $j$
+
+-   $X_{im}$ - Corresponde a las exportaciones del producto $i$ en la región $j$
+
+-   $X_{tm}$ - Corresponde a las exportaciones totales del mundo
+
+El contenido de este documento busca calcular el RCA de los prodcutos exportados por la **\*\*\*\***\_\_**\*\*\*\***:**\_:\_\_\_** por lo que la formula queda de la siguiente forma.
+
+$ VCRe =  ln\left [ \left ( \frac{X_{ij}}{X_{it}} \right )/\left ( \frac{X_{ip}}{X_{tp}} \right ) \right ] $
+
+Donde:
+
+-   $X_{ij}$ - Corresponde a las exportaciones del producto $i$ en Los Ríos
+
+-   $X_{tj}$ - Corresponde a las exportaciones totales en Los Ríos
+
+-   $X_{ip}$ - Corresponde a las exportaciones del producto $i$ en Chile
+
+-   $X_{tp}$ - Corresponde a las exportaciones totales de Chile
+
+## Obtención de datos:
+
+Para empezar, la obtención de datos de expotaciones se hace a través de una descarga simple en la siguiente URL para el caso de las exportaciones.
+
+```shell
+https://www.aduana.cl/exportacion-por-codigo-arancelario/aduana/2018-12-14/095532.htmlhttps://www.aduana.cl/exportacion-por-codigo-arancelario/aduana/2018-12-14/095532.html
+```
+
+En este caso se realizará un análisis en el período 2002-2023.
+
+## Transformación de datos
+
+Al observar los datos existentes en cada .CSV se hace notorio que se necesitará concatenarlos para tener un solo DataFrame con los datos de todos los años, para esto generaremos una función que realice dicha tarea.
+
+```python
+def concatenate_dfs():
+    years_list = [str(x) for x in range(2002,2024)]
+    frames = []
+    for year in years_list:
+        df = pd.read_csv("BDExportacionesAño{}.csv".format(year),sep=";",decimal=",")
+        df.rename(columns={'FOBUS_AJUSTADO_IVV':'FOB_US_IVV'},inplace=True)
+        frames.append(df)
+    concatenated_dfs= pd.concat(frames)
+    return concatenated_dfs
+```
+
+También, en el caso de los análisis a nivel regional deberemos poder tener los datos de todos los años de una región en particular filtrados del DataFrame con los datos de todos los años obtenido con la función anterior, para esto generaremos una función que permita separar del DataFrame total en dos, un DataFrame igual al original y otro que contenga los datos de la región a analizar.
+
+```python
+def separate_dfs(df,cod_region):
+    df_region = df.loc[df["COD_REGION_ORIGEN"]==cod_region]
+    df_region = df_region.reset_index()
+    del df_region["index"]
+
+    df_chile = df
+    df_chile = df_chile.reset_index()
+    del df_chile["index"]
+
+    return df_region,df_chile
+```
+
+También para la posterior transformación de códigos de países a los países originales se deberán remapear todos los códigos correspondientes al país al que apuntan. Para esto también se crea una función.
+
+```python
+def update_countries(df_countries):
+    COUNTRIES_DICT = {0:"Otros Orígenes Desconocidos",100:"Territorio Británico en Asia",101:"Senegal",102:"Gambia",103:"Guinea - Bissau",104:"Guinea",105:"Sierra Leona",106:"Liberia",107:"Costa de Marfil",108:"Ghana",109:"Togo",111:"Nigeria",112:"Sudáfrica",113:"Botswana",114:"Lesotho",115:"Malawi",116:"Zimbabwe",117:"Zambia",118:"Comoras",119:"Mauricio",120:"Madagascar",121:"Mozambique",122:"Swazilandia",123:"Sudán",124:"Egipto",125:"Libia",126:"Tunez",127:"Argelia",128:"Marruecos",129:"Cabo Verde",130:"Chad",131:"Niger",132:"Alto Volta",133:"Mali",134:"Mauritania",135:"Tanzania",136:"Uganda",137:"Kenia",138:"Somalia",139:"Etiopia",140:"Angola",141:"Burundi",142:"Rwanda",143:"República Democratica del Congo (ex Zaire)",144:"República del Congo",145:"Gabon",146:"Sao Tome y Príncipe",147:"Guinea Ecuatorial",148:"República Centroafricana",149:"Camerún",150:"Benín",151:"Territorio Britanico en Africa",152:"Territorio Español en África",153:"Territorio Francés en África",154:"Bophuthatswana",155:"Djibouti",156:"Seychelles",158:"Vienda",159:"Namibia",160:"Sudán del Sur",161:"Burkina Faso",162:"Ciskey",163:"Eritrea",164:"Islas Marshall",165:"Saharavi",166:"Transkei",201:"Venezuela",202:"Colombia",203:"Trinidad y Tobago",204:"Barbados",205:"Jamaica",206:"República Dominicana",207:"Bahamas",208:"Haití",209:"Cuba",210:"Panamá",211:"Costa Rica",212:"Nicaragua",213:"El Salvador",214:"Honduras",215:"Guatemala",216:"México",217:"Guyana",218:"Ecuador",219:"Perú",220:"Brasil",221:"Bolivia",222:"Paraguay",223:"Uruguay",224:"Argentina",225:"Estados Unidos de América",226:"Canadá",227:"Territorio Británico en América",228:"Territorio Francés en América",229:"Territorio Holandes en América",230:"Territorio de Dinamarca en América",231:"Dominica",232:"Granada",233:"Santa Lucía (Islas  Occidentales)",234:"San Vicente y las Granadinas",235:"Surinam",236:"Belice",240:"Antigua y Barbuda",241:"Saint Kitts & Nevis",242:"Anguila",243:"Aruba",244:"Bermudas",245:"Islas Virgenes Britanicas",246:"Islas Caymán",247:"Antillas Neerlandesas",248:"Turcas y Caicos",249:"Islas Virgenes (Estados Unidos de América)",250:"Martinica",251:"Puerto Rico",252:"Monserrat",253:"Groenlandia",301:"Jordania",302:"Arabia Saudita",303:"Kuwait",304:"Omán",305:"Chipre",306:"Israel",307:"Iraq",308:"Afghanistán",309:"Irán",310:"Siria",311:"Libano",312:"Qatar",313:"Bahrein",314:"Sri Lanka",315:"Cambodia",316:"Laos",317:"India",318:"Bután",319:"Thailandia",320:"Nepal",321:"Bangladesh",322:"Palestina",324:"Pakistán",325:"Vietnam",326:"Myanmar (ex Birmania)",327:"Maldivas (Isla Maldivas)",328:"Indonesia",329:"Malasia",330:"Taiwán (Formosa)",331:"Japón",332:"Singapur",333:"Corea del Sur",334:"Corea del Norte",335:"Filipinas",336:"China",337:"Mongolia",338:"Territorio Británico en Asia",341:"Emiratos Arabes Unidos",342:"Hong Kong",343:"Territorio Portugués en Asia",344:"Brunei",345:"Macao",346:"República de Yemen",401:"Fiji",402:"Nauru",403:"Tonga (Isla Tonga)",404:"Samoa Occidental",405:"Nueva Zelandia",406:"Australia",407:"Territorio Británico en Oceanía y el Pacífico",408:"Territorio Francés en Oceanía y el Pacífico",409:"Territorio NorteAméricano en Oceanía y el Pacífico",412:"Papua Nueva Guinea",415:"Vanuatu",416:"Kiribati",417:"Micronesia",418:"Islas Salomón",419:"Tuvalu",420:"Palau (ex Belau)",421:"Niue",422:"Polinesia Francesa",423:"Nueva Caledonia",424:"Islas Marianas del Norte",425:"Guam",426:"Timor Oriental",427:"Islas Cook",501:"Portugal",502:"Alemania F.R.",503:"Alemania R.D.",504:"Italia",505:"Francia",506:"Irlanda",507:"Dinamarca",508:"Suiza",509:"Austria",510:"Reino Unido",511:"Suecia",512:"Finlandia",513:"Noruega",514:"Bélgica",515:"Holanda",516:"Islandia",517:"España",518:"Albania",519:"Rumania",520:"Grecia",521:"U.R.S.S.",522:"Turquia",523:"Malta",524:"Santa Sede (Ciudad del Vaticano)",525:"Andorra",526:"Yugoeslavia",527:"Bulgaria",528:"Polonia",529:"Otros de Europa",530:"Hungria",532:"Luxemburgo",534:"Liechtenstein",535:"Monaco",536:"San Marino",540:"Armenia",541:"Azerbaiyan",542:"Belarus",543:"Bosnia y Herzegovina",544:"República Checa",545:"Eslovaquia",546:"Serbia",547:"Croacia",548:"Eslovenia",549:"Estonia",550:"Georgia",551:"Kasajstán",552:"Kirgistán",553:"Letonia",554:"Lituania",555:"Macedonia",556:"Moldova",557:"Tadjikistán",558:"Turkmenistán",559:"Ucrania",560:"Uzbekistan",561:"Montenegro",562:"Rusia",563:"Alemania",564:"Yugoeslavia",565:"Gibraltar",566:"Guernsey",567:"Isla de Man",568:"Jersey",585:"Gibraltar",888:"Resto del Mundo",901:"Combustibles y lubricantes destinados al consumo de naves y aeronaves extranjeras y de revistas con el mismo objeto",902:"Aprovisionamiento (Rancho) de naves y aeronaves extranjeras y de maderas para estibar mercancías cargadas en puertos chilenos",903:"Pesca Extraterritorial",904:"Origenes o Destinaciones no precisadas por razones comerciales o militares",905:"Zona franca Iquique",906:"Depósito franco",907:"Zona franca Punta Arenas",910:"Zona Franca Arica, Zona Industrial",997:"Chile",998:"Nacional reputada",999:"Otros"}
+    df_countries.replace({"COD_PAIS_DESTINO": COUNTRIES_DICT},inplace=True)
+    return df_countries
+```
+
+Con objeto de poder clasificar a qué sección arancelaria corresponde cada registro de exportación, habrá que convertir la columna `ITEM_SA` que representa el código arancelario. Para esto se crea una función que se encargue de dicha tarea.
+
+```python
+def tariff_classification(df):
+    df_dict = df.to_dict(orient="records")
+    for row in df_dict:
+        valor = row["ITEM_SA"]
+        if 0 <= valor < 6000000:
+            row["GRUPO_ARANCELARIO"] = "S1"
+        if 6000000 <= valor < 15000000:
+            row["GRUPO_ARANCELARIO"] = "S2"
+        if 15000000 <= valor < 16000000:
+            row["GRUPO_ARANCELARIO"] = "S3"
+        if 16000000 <= valor < 25000000:
+            row["GRUPO_ARANCELARIO"] = "S4"
+        if 25000000 <= valor < 28000000:
+            row["GRUPO_ARANCELARIO"] = "S5"
+        if 28000000 <= valor < 39000000:
+            row["GRUPO_ARANCELARIO"] = "S6"
+        if 39000000 <= valor < 41000000:
+            row["GRUPO_ARANCELARIO"] = "S7"
+        if 41000000 <= valor < 44000000:
+            row["GRUPO_ARANCELARIO"] = "S8"
+        if 44000000 <= valor < 47000000:
+            row["GRUPO_ARANCELARIO"] = "S9"
+        if 47000000 <= valor < 50000000:
+            row["GRUPO_ARANCELARIO"] = "S10"
+        if 50000000 <= valor < 64000000:
+            row["GRUPO_ARANCELARIO"] = "S11"
+        if 64000000 <= valor < 68000000:
+            row["GRUPO_ARANCELARIO"] = "S12"
+        if 68000000 <= valor < 71000000:
+            row["GRUPO_ARANCELARIO"] = "S13"
+        if 71000000 <= valor < 72000000:
+            row["GRUPO_ARANCELARIO"] = "S14"
+        if 72000000 <= valor < 84000000:
+            row["GRUPO_ARANCELARIO"] = "S15"
+        if 84000000 <= valor < 86000000:
+            row["GRUPO_ARANCELARIO"] = "S16"
+        if 86000000 <= valor < 90000000:
+            row["GRUPO_ARANCELARIO"] = "S17"
+        if 90000000 <= valor < 93000000:
+            row["GRUPO_ARANCELARIO"] = "S18"
+        if 93000000 <= valor < 94000000:
+            row["GRUPO_ARANCELARIO"] = "S19"
+        if 94000000 <= valor < 97000000:
+            row["GRUPO_ARANCELARIO"] = "S20"
+        if 97000000 <= valor <= 99000000:
+            row["GRUPO_ARANCELARIO"] = "S21"
+
+    df = pd.DataFrame.from_dict(df_dict)
+    return df
+```
+
+## Análisis : Cálculo de VCRe
+
+Para el cálculo del indice VCRe se creará una función que permita aplicar a partir de los datos que se tienene la formula inicialmente mostrada.
+
+```python
+def calculate_RCAe(df_chile,df_region,region_suffix):
+    total_exp_chile_dict = {}
+    total_exp_region_dict = {}
+
+    df_chile["FOB_US_IVV"] = pd.to_numeric(df_chile["FOB_US_IVV"])
+    df_region["FOB_US_IVV"] = pd.to_numeric(df_region["FOB_US_IVV"])
+    years_list = [x for x in range(2002,2024)]
+
+    for year in years_list:
+        total_exp_chile_dict[year] = df_chile.loc[df_chile["PERIODO"] == year, "FOB_US_IVV"].sum()
+        total_exp_region_dict[year] = df_region.loc[df_region["PERIODO"] == year, "FOB_US_IVV"].sum()
+
+    # Se crean los df agrupados según producto exportado para la región y chile separadamente para luego poder filtrar aquellos que se repiten en ambos df
+    df_region_grouped = grouped_df(df_region)
+    df_chile_grouped = grouped_df(df_chile)
+
+    # Se crea un df filtrando los productos exportados por Chile que coinciden con los exportados en un mismo año por la región analizada
+    # A estos se les calculará el RCAe, este df permite obtener la cantidad exportada de un mismo producto en un año por parte de Chile y la región por separado
+    df_merged = pd.merge(df_region_grouped, df_chile_grouped, on=['PERIODO','ITEM_SA'],suffixes=(region_suffix, '_CL'))
+
+    for index, value in df_merged.iterrows():
+        total_exp_prod_region = value[f"FOB_US_IVV_{region_suffix}"]
+        total_exp_prod_chile = value["FOB_US_IVV_CL"]
+
+        # Paso a formula de paper
+        M_ia = total_exp_prod_region
+        M_in = total_exp_region_dict[value["PERIODO"]] - total_exp_prod_region
+        M_ra = total_exp_prod_chile-total_exp_prod_region
+        M_rn = (total_exp_chile_dict[value["PERIODO"]]-total_exp_region_dict[value["PERIODO"]])-(total_exp_prod_chile + total_exp_prod_region)
+
+        # Calculo
+        df_merged.loc[index,"CUOTA_REGIONAL"] = float(M_ia/M_in)
+        df_merged.loc[index,"CUOTA_NACIONAL"] = float(M_ra/M_rn)
+        df_merged.loc[index,"pre_RCAe"] = float(df_merged.loc[index,"CUOTA_REGIONAL"]/df_merged.loc[index,"CUOTA_NACIONAL"])
+
+        pre_RCAe = df_merged.loc[index,"pre_RCAe"]
+        if pre_RCAe > 0:
+           df_merged.loc[index,"RCAe"] = math.log(df_merged.loc[index,"pre_RCAe"])
+            # De manera contraria se asigna a la columna RCAe el valor de 0, no se aplica el log debido a su indefinición en 0
+        else:
+            df_merged.loc[index,"RCAe"] = 0
+
+        # En productos en dónde todo lo exporta el país corresponde a lo que exporta la región M_ra = 0 y RCAe = Infinito
+        # Por esto mismo en estas excepciones se le otorga un valor de cien ya que el producto es competitivo
+        if M_ra == 0:
+            df_merged.loc[index,"RCAe"] = 100
+
+
+    return df_merged
+```
+
+A partir del resultado de esta función que retorna DataFrame que contiene todas las exportaciones de una región en especifico con el VCRe de cada uno de estos en un periodo de tiempo determinado, se pueden obtener otros DataFrame que resuman toda esta información para una interpretación mucho más fácil e intuitiva.
+
+En primer lugar, es interesante poder saber la cantidad de productos, por cada sección arancelaria, exportados por una región en un determinado año que poseen un buen (mayor a 1) o mal indice (menor a 1) de VCRe
+
+```python
+def rca_frecuency(df):
+    df_good_rca = df.groupby(['PERIODO','GRUPO_ARANCELARIO'])['RCA_E'].apply(lambda x: (x>1).sum()).reset_index(name='RCA>1')
+    df_bad_rca = df.groupby(['PERIODO','GRUPO_ARANCELARIO'])['RCA_E'].apply(lambda x: (x<1).sum()).reset_index(name='RCA<1')
+    df_rca = pd.merge(on=["GRUPO_ARANCELARIO","PERIODO"],left=df_good_rca,right=df_bad_rca)
+    return df_rca
+```
+
+También resulta interesante poder saber la cantidad total de productos, por cada sección arancelaria, exportados por una región en un determinado.
+
+```python
+def tabulate_yearly_products(df):
+    years = [x for x in range (2002,2024)]
+    sectors = ["S{}".format(x) for x in range(1,23)]
+    d={}
+    l=[]
+    for year in years:
+        l=[]
+        for i in range(1,23):
+            cond1 = df["PERIODO"] == year
+            cond2 = df["GRUPO_ARANCELARIO"]=="S{}".format(str(i))
+            temp = df[(cond1) & (cond2)]
+            cant=temp["ITEM_SA"].value_counts().sum()
+            l.append(cant)
+        d[year]=l
+    df_tabulated = pd.DataFrame.from_dict(d, orient='index',columns=sectors)
+    df_tabulated_transposed = df_tabulated.transpose()
+    return df_tabulated_transposed
+```
+
+### Análisis: Exportaciones a paises.
+
+Otro de los análisis que derivan de los datos de exportaciones es
+
+```python
+def clean_codes_column(df,column):
+    errors_df = df[pd.to_numeric(df[column], errors='coerce').isnull()]
+    new_df = df.drop(errors_df.index)
+    return new_df
+```
+
+```python
+def generate_other_dfs(df_region,df_chile,region_suffix):
+
+    # Se quitan del dataframe aquellos valores vacíos (strings con espacios)
+    df_chile = clean_codes_column(df_chile,"ITEM_SA")
+    df_region = clean_codes_column(df_region,"ITEM_SA")
+
+    # Se transforman las columnas con los codigos arancelarios a númericas
+    df_region["ITEM_SA"] = pd.to_numeric(df_region["ITEM_SA"])
+    df_chile["ITEM_SA"] = pd.to_numeric(df_chile["ITEM_SA"])
+
+    # Se clasifican según el codigo arancelario los productos por grupo arancelario
+    df_region = tariff_classification(df_region)
+    df_chile = tariff_classification(df_chile)
+
+
+    # DF con información de los productos ordenados por año, país y grupo arancelario teniendo la cantidad total de tipos de articulos exportados,
+    # la cantidad de mercancia en unidades, el peso bruto en kg y el total de dolares en FOB
+    df_countries_reg = df_region.groupby(["PERIODO","COD_PAIS_DESTINO","GRUPO_ARANCELARIO"],as_index=False).agg({"ITEM_SA": 'count',"CANTIDAD_MERCANCIA":'sum',"PESO_BRUTO_KG":"sum","FOB_US_IVV": 'sum'})
+    df_countries_chile = df_chile.groupby(["PERIODO","COD_PAIS_DESTINO","GRUPO_ARANCELARIO"],as_index=False).agg({"ITEM_SA": 'count',"CANTIDAD_MERCANCIA":'sum',"PESO_BRUTO_KG":"sum","FOB_US_IVV": 'sum'})
+
+
+    df_countries = pd.merge(df_countries_reg, df_countries_chile, on=['PERIODO','COD_PAIS_DESTINO','GRUPO_ARANCELARIO'],suffixes=(region_suffix, '_CL'))
+    df_countries.rename(columns={f"ITEM_SA{region_suffix}":f"CANT_TIPOS_ARTICULO{region_suffix}",'ITEM_SA_CL':'CANT_TIPOS_ARTICULO_CL'},inplace=True)
+
+    df_countries["% CANT_TIPOS_ARTICULO"] = df_countries[f"CANT_TIPOS_ARTICULO{region_suffix}"]/df_countries["CANT_TIPOS_ARTICULO_CL"]
+    df_countries["% CANT_MERCANCIA"] = df_countries[f"CANTIDAD_MERCANCIA{region_suffix}"]/df_countries["CANTIDAD_MERCANCIA_CL"]
+    df_countries["% PESO_BRUTO_KG"] = df_countries[f"PESO_BRUTO_KG{region_suffix}"]/df_countries["PESO_BRUTO_KG_CL"]
+    df_countries["% FOB_US_IVV"] = df_countries[f"FOB_US_IVV{region_suffix}"]/df_countries["FOB_US_IVV_CL"]
+
+    # DF con información de los productos ordenados por año y grupo arancelario teniendo la cantidad total de,
+    # la mercancia en unidades, el peso bruto en kg y el total de dolares en FOB
+    df_totales_sectoriales_reg = df_region.groupby(["PERIODO","GRUPO_ARANCELARIO"],as_index=False).agg({"FOB_US_IVV": 'sum',"CANTIDAD_MERCANCIA":'sum',"PESO_BRUTO_KG":"sum"})
+    df_totales_sectoriales_chile = df_chile.groupby(["PERIODO","GRUPO_ARANCELARIO"],as_index=False).agg({"FOB_US_IVV": 'sum',"CANTIDAD_MERCANCIA":'sum',"PESO_BRUTO_KG":"sum"})
+    df_pctges = pd.merge(df_totales_sectoriales_reg, df_totales_sectoriales_chile, on=['PERIODO','GRUPO_ARANCELARIO'],suffixes=(region_suffix, '_CL'))
+
+    df_pctges["% FOB_US_IVV"]= df_pctges[f"FOB_US_IVV{region_suffix}"]/df_pctges["FOB_US_IVV_CL"]
+    df_pctges["% CANTIDAD_MERCANCIA"]= df_pctges[f"CANTIDAD_MERCANCIA{region_suffix}"]/df_pctges["CANTIDAD_MERCANCIA_CL"]
+    df_pctges["% PESO_BRUTO_KG"]= df_pctges[f"PESO_BRUTO_KG{region_suffix}"]/df_pctges["PESO_BRUTO_KG_CL"]
+
+    return df_countries,df_pctges
+```
+
+## Utilización de funciones
+
+```python
+df_total = concatenate_dfs()
+df_region,df_chile = separate_dfs(df_total,10)
+df_final = calculate_RCAe(df_chile,df_region,'_LL')
+df_final = tariff_classification(df_final)
+df_rca = rca_frecuency(df_final)
+df_tabulated = tabulate_yearly_products(df_final)
+df_countries,df_pctges = generate_other_dfs(df_region,df_chile,'_LL')
+df_countries_updated = update_countries(df_countries)
+```
+
+## Visualizaciones :
+
+Por temas de mejor interacción ante la cantidad de datos , para responder las siguientes preguntas :
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué
