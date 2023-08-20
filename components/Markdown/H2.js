@@ -1,3 +1,4 @@
+"use client"
 const H2 = ({children}) => {
     return (
         <h2 className="font-extrabold underline mt-8">
