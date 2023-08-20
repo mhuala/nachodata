@@ -8,11 +8,9 @@ import YoutubeVideo from "../Markdown/YoutubeVideo";
 import PowerBI from "../Markdown/PowerBI";
 import Photo from "../Markdown/Photo";
 import Url from "../Markdown/Url";
-import H2 from "../Markdown/H2";
-import H3 from "../Markdown/H3";
-import H4 from "../Markdown/H4";
-import H5 from "../Markdown/H5";
 import Repository from "../Markdown/Repository";
+import Cite from "../Markdown/Cite";
+import Note from "../Markdown/Note";
 
 const PostContent = ({ children }) => {
     const [visibleTableOfContent, setVisibleTableOfContent] = useState(false);
@@ -25,20 +23,17 @@ const PostContent = ({ children }) => {
     return (
         <div className="font-sans text-base xl:text-lg 2xl:text-xl">
             {/* CONTENIDO post */}
-            <div className="rounded-full">🤖NOTA: Debido a problemas que <span className="font-bold">cada link</span></div>
             <Markdown
                 options={{
                     overrides: {
                         Code: { component: Code },
-                        H2: { component: H2 },
-                        H3: { component: H3 },
-                        H4: { component: H4 },
-                        H5: { component: H5 },
                         Photo: { component: Photo },
                         PoweBI: { component: PowerBI },
                         Url: { component: Url },
                         YoutubeVIdeo: { component: YoutubeVideo },
-                        Repository: {component: Repository}
+                        Repository: {component: Repository},
+                        Note: {component: Note},
+                        Cite: {component: Cite}
                     },
                 }}
             >
@@ -49,32 +44,14 @@ const PostContent = ({ children }) => {
             <div className={visibleTableOfContent ? "block" : "hidden"}>
                 <nav
                     style={{ position: "fixed", top: "8em", right: "0" }}
-                    className="rounded-l-lg border z-10 bg-slate-900"
+                    className="bg-slate-800 rounded-fulll z-10 p-2"
                 >
-                    <ul className="text-white p-4">
-                        <div className="flex flex-row gap-2 items-center">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                width={0}
-                                height={0}
-                                className="w-4 h-4 text-white"
-                                fill="currentColor"
-                                stroke="white"
-                                viewBox="0 0 18 18"
-                            >
-                                <path
-                                fill="#494c4e"
-                                d="M17 0H1a1 1 0 0 0-1 1v16a1 1 0 0 0 1 1h16a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1zM3 16a1 1 0 0 1 0-2 1 1 0 0 1 0 2zm0-4a.945.945 0 0 1-1-1 .945.945 0 0 1 1-1 .945.945 0 0 1 1 1 .945.945 0 0 1-1 1zm0-4a.945.945 0 0 1-1-1 .945.945 0 0 1 1-1 .945.945 0 0 1 1 1 .945.945 0 0 1-1 1zm0-4a.945.945 0 0 1-1-1 .945.945 0 0 1 1-1 .945.945 0 0 1 1 1 .945.945 0 0 1-1 1zm12 12H7a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2zm0-4H7a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2zm0-4H7a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2zm0-4H7a1 1 0 0 1 0-2h8a1 1 0 0 1 0 2z"
-                                />
-                            </svg>
-                            <h1 className="text-xl">Tabla de contenidos</h1>
-                        </div>
-
+                    <ul className="text-white">
+                        <h1>Tabla de contenidos</h1>
                         {headings.map((heading) => (
                             <li
                                 key={heading.id}
                                 style={{ marginLeft: `${heading.level}em` }}
-                                className="space-y-1"
                             >
                                 <a
                                     href={`#${heading.id}`}
@@ -85,7 +62,7 @@ const PostContent = ({ children }) => {
                                                 : "normal",
                                     }}
                                 >
-                                    • {heading.text}
+                                    {heading.text}
                                 </a>
                             </li>
                         ))}
@@ -98,7 +75,7 @@ const PostContent = ({ children }) => {
                     onClick={() => {
                         setVisibleTableOfContent(!visibleTableOfContent);
                     }}
-                    className="text-white shadow-xl flex items-center justify-center rounded-full bg-violet-500 absolute"
+                    className="text-white shadow-xl flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 absolute"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -109,6 +86,8 @@ const PostContent = ({ children }) => {
                         class="w-10 h-10"
                     >
                         <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
                             d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"
                         />
                     </svg>

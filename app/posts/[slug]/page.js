@@ -1,6 +1,7 @@
 import getPostMetadata from "@/utils/utils";
 import { postsPath } from "../../../utils/mdxUtils";
 import { TagsIcon, TimeIcon } from "@/public/icons/icons";
+import Note from "@/components/Markdown/Note";
 
 import dynamic from "next/dynamic";
 import Image from "next/image";
@@ -121,6 +122,7 @@ const PostPage = async (props) => {
                 <hr className="border-2 border-[#CE3F73] drop-shadow-xl rounded-full mt-2" />
                 {/* POST CONTENT */}
                 <div className="text-white text-lg font-mono mt-12 pb-8 mb-12 px-10">
+                    <Note/>
                     <PostContent>{postContent.markdownContent}</PostContent>
                 </div>
                 {/* RECOMMENDED POSTS */}

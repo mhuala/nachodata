@@ -51,11 +51,11 @@ export default function Navbar() {
                         <div className="w-0.5 h-6 bg-gray-400 opacity-50"></div>
                         <button
                             type="submit"
-                            className="flex items-center mx-auto w-full p-3 text-sm font-bold tracking-wide uppercase rounded dark:bg-violet-500 dark:text-gray-900 transform hover:-translate-y-2 transition-transform duration-500 ease-in-out"
+                            className="flex items-center mx-auto w-full p-3 text-sm font-bold tracking-wide uppercase rounded dark:bg-violet-500 dark:text-gray-900 transform hover:-translate-y-2 hover:bg-indigo-500 transition-transform duration-500 ease-in-out"
                         >
                             <Link
                                 href="/search"
-                                className="text-white flex items-center space-x-2"
+                                className="text-white flex items-center space-x-2 "
                             >
                                 <svg
                                     xmlns="http://www.w3.org/2000/svg"
@@ -108,14 +108,14 @@ export default function Navbar() {
                 }
             >
                 <Link
-                    href="/home"
+                    href="/about"
                     className="flex hover:bg-slate-600 p-2 space-x-4 items-center clickeable text-center mx-auto w-full ml-6"
                 >
                     <AboutIcon />
                     <span className="text-center font-semibold">Sobre mí</span>
                 </Link>
                 <Link
-                    href="/about"
+                    href="/contact"
                     className="flex hover:bg-slate-600 p-2 space-x-4 items-center clickeable text-center mx-auto w-full ml-6"
                 >
                     <ContactIcon />

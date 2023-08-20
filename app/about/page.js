@@ -2,6 +2,9 @@ import Timeline from "@/components/About/Timeline";
 import Skills from "@/components/About/Skills";
 import Image from "next/image";
 import { CheckCircleIcon } from "@heroicons/react/20/solid";
+import Profile from "../../public/webImages/about.jpg"
+import { DownloadIcon } from "@/public/icons/icons";
+
 const benefits = [
     "Responsabilidad",
     "Autonomía del aprendizaje",
@@ -36,7 +39,7 @@ export default function About() {
                                 width={0}
                                 height={0}
                                 className="h-96 w-full flex-none rounded-2xl object-cover shadow-xl lg:aspect-square lg:h-auto lg:max-w-sm"
-                                src="https://images.unsplash.com/photo-1519338381761-c7523edc1f46?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=800&q=80"
+                                src={Profile}
                                 alt=""
                             />
                             <div className="w-full flex-auto">
@@ -69,12 +72,12 @@ export default function About() {
                                 </ul>
                                 <div className="mt-10 flex">
                                     <a
-                                        className=" bg-slate-200 p-2 rounded-full text-sm font-semibold leading-6 text-indigo-600"
-                                        href="/files/cv.txt"
+                                        className=" flex items-center gap-2 rounded-md bg-violet-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                        href="/files/cv.pdf"
                                         download
                                     >
-                                        Descarga mi CV{" "}
-                                        <span aria-hidden="true">&rarr;</span>
+                                        Descarga mi CV 
+                                        <DownloadIcon />
                                     </a>
                                 </div>
                             </div>

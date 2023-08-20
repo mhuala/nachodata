@@ -38,6 +38,7 @@ const PostCard = ({
         >
             {/* <!-- IMAGE -->  */}
             <div className="relative overflow-hidden cursor-pointer rounded-xl ">
+
                 <Image
                     src={bannerURL}
                     alt={title}
@@ -45,6 +46,9 @@ const PostCard = ({
                     height="0"
                     className="rounded-xl object-cover hover:scale-110 opacity-50 hover:opacity-75 transition duration-300 ease-in-out w-full"
                 />
+              
+                <Link
+                href={`/posts/${slug}`} passHref>
                 <div className="absolute top-5 left-5">
                     <div className="flex justify-end gap-2 bg-white rounded-full px-2 py-2 shadow-2xl">
                         {tags.map((tag) => {
@@ -62,27 +66,31 @@ const PostCard = ({
                         })}
                     </div>
                 </div>
+                </Link>
             </div>
             <Link
                 href={`/posts/${slug}`}
                 passHref
-                className="text-left sm:text-xl lg:text-2xl text-indigo-400 font-rale font-bold h-16"
+                className="text-left sm:text-xl lg:text-2xl text-indigo-500 font-rale font-bold h-16 py-4"
             >
                 {title}
             </Link>
             {/* <!-- CONTENT -->  */}
-            <p className="line-clamp-3 text-sm sm:text-base lg:text-lg text-gray-300 text-left overflow-ellipsis h-24">
+            <Link
+                href={`/posts/${slug}`}
+                passHref>
+            <p className="line-clamp-3 text-sm sm:text-base lg:text-lg text-gray-300 text-left overflow-ellipsis h-24 py-4">
                 {description}
             </p>
-
-            {/* <!-- TITLE -->  */}
-
+              </Link>
             {/* <!-- FINAL SECTION -->  */}
-            <section className="flex flex-row items-center w-full">
-                <div className="flex justify-start gap-2">
+            <Link
+                href={`/posts/${slug}`}
+                passHref>
+            <section className="flex flex-row items-end w-full gap-2">
                     <TimeIcon /> 2 min read
-                </div>
             </section>
+            </Link>
         </div>
     );
 };

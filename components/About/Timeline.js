@@ -3,8 +3,8 @@ import { DownloadIcon } from "@/public/icons/icons";
 const Timeline = () => {
     return (
         <div className="px-12 pb-10 -mt-12 animate-fade-left">
-            <div className="bg-slate-800 rounded-r-full top-12 relative w-2/3 items-center mx-0 2xl:mx-auto flex">
-                <h2 className="text-white text-2xl sm:text-4xl  font-semibold  relative p-2 w-auto">
+            <div className="2xl:bg-slate-800 xl:rounded-r-full top-12 relative w-2/3 items-center mx-0 2xl:mx-auto flex">
+                <h2 className="text-white text-2xl sm:text-4xl text-start font-semibold  relative p-2 w-auto">
                     Experiencia Previa{" "}
                 </h2>
             </div>

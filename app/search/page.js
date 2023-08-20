@@ -12,6 +12,8 @@ const options = [
     { value: "react", label: "React JS" },
     { value: "python", label: "Python" },
     { value: "chatgpt", label: "ChatGPT" },
+    { value: "pandas", label: "Pandas" },
+    { value: "powerbi", label: "PowerBi" },
 ];
 
 const SearchPage = ({ params }) => {
@@ -117,12 +119,8 @@ const SearchPage = ({ params }) => {
 
     return (
         <div className="flex flex-col mt-10 mx-auto items-center min-h-screen">
-            <div className="w-5/6 rounded-lg bg-gray-700 flex flex-col p-8 gap-6">
+            <div className="w-5/6 rounded-lg bg-gray-700 flex flex-col p-6 gap-6">
                 <div className="flex flex-col items-center mx-auto gap-4">
-                    <h2 className="text-white font-bold text-4xl">
-                        {" "}
-                        Realiza tu busqueda
-                    </h2>
                     <span className="text-white  text-xl px-2 italic">
                         Busca y filtra entre las diferentes publicaciones
                         existentes según contenido o tipo de tecnologías
@@ -135,7 +133,7 @@ const SearchPage = ({ params }) => {
                         <FilterIcon /> Filtros
                     </span>
 
-                    <div className="px-4 ">
+                    <div className="px-4 w-64">
                         <Select
                             closeMenuOnSelect={false}
                             components={animatedComponents}
@@ -147,7 +145,7 @@ const SearchPage = ({ params }) => {
                     </div>
                 </div>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12 px-16 py-16 w-11/12">
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-12 px-6 md:px-16 xl:px-32 py-16 w-11/12">
                 {filteredPosts().length >= 1 ? (
                     filteredPosts().map((post) => {
                         return (

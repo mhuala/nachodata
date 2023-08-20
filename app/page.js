@@ -1,4 +1,7 @@
 import Image from "next/image";
+import Link from "next/link";
+import { ChatIcon } from "@/public/icons/icons";
+import DataAnalystBadge from "../public/webImages/dataAnalyst.svg"
 
 export default function HomePage() {
     return (
@@ -29,43 +32,32 @@ export default function HomePage() {
                             <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">
                                 {/* LG CONTENT */}
                                 <div className="hidden lg:grid px-6 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
-                                    <div className="mx-auto max-w-2xl lg:mx-0">
-                                        <Image
-                                            width={0}
-                                            height={0}
-                                            className="h-11"
-                                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                            alt="Your Company"
-                                        />
-                                        <h1 className="mt-24 text-4xl font-bold tracking-tight text-gray-200 sm:mt-10 sm:text-6xl">
+                                    <div className="mx-auto lg:mx-0">
+                                        <div className="flex items-center gap-4 relative">
+                                        <Image src={DataAnalystBadge} width={0} height={0} className="w-32 h-32 absolute top-0 -left-40 hidden 2xl:flex "/>
+                                        <h1 className="text-4xl font-bold tracking-tight text-gray-200  sm:text-6xl">
                                             Soy Nacho Huala,{" "}
-                                            <span className="text-indigo-500">
+                                            <span className="text-violet-500">
                                                 {" "}
                                                 analista de datos
                                             </span>
                                         </h1>
+                                        </div>
                                         <p className="mt-6 text-lg leading-8 text-gray-100">
                                             Quiero ayudarte a tomar decisiones,{" "}
-                                            <span className="text-indigo-500 font-bold">
+                                            <span className="text-violet-500 font-bold">
                                                 decisiones basadas en datos
                                             </span>
                                         </p>
                                         <div className="mt-10 flex items-center gap-x-6">
-                                            <a
-                                                href="#"
-                                                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                           
+                                            <Link
+                                                href="/contact"
+                                                className="flex gap-2 items-center rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                             >
+                                                <ChatIcon/>
                                                 Hablemos !
-                                            </a>
-                                            <a
-                                                href="#"
-                                                className="text-sm font-semibold leading-6 text-gray-900"
-                                            >
-                                                Learn more{" "}
-                                                <span aria-hidden="true">
-                                                    →
-                                                </span>
-                                            </a>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
@@ -82,42 +74,31 @@ export default function HomePage() {
                                 {/* SM CONTENT */}
                                 <div className="grid lg:hidden px-6 pb-24 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
                                     <div className="mx-auto max-w-2xl lg:mx-0">
-                                        <Image
-                                            width={0}
-                                            height={0}
-                                            className="h-11"
-                                            src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                                            alt="Your Company"
-                                        />
-                                        <h1 className="mt-8 text-4xl font-bold tracking-tight text-gray-200 sm:mt-10 sm:text-6xl">
-                                            Soy Nacho Huala,{" "}
-                                            <span className="text-indigo-500">
-                                                {" "}
-                                                analista de datos
-                                            </span>
-                                        </h1>
+                                        <div className="flex items-center gap-4">
+
+                                            <h1 className="text-4xl font-bold tracking-tight text-gray-200 sm:text-6xl ">
+                                                Soy Nacho Huala,{" "}
+                                                <span className="text-violet-500">
+                                                    {" "}
+                                                    analista de datos
+                                                </span>
+                                            </h1>
+                                        </div>
                                         <p className="mt-6 text-lg leading-8 text-gray-100">
                                             Quiero ayudarte a tomar decisiones,{" "}
-                                            <span className="text-indigo-500 font-bold">
-                                                decisiones basadas en datos
+                                            <span className="text-violet-500 font-bold">
+                                                decisiones basadas en datos 
                                             </span>
                                         </p>
-                                        <div className="mt-10 flex items-center gap-x-6">
-                                            <a
-                                                href="#"
-                                                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                                        <div className="mt-10 flex items-center justify-between">
+                                            <Link
+                                                href="/contact"
+                                                className="flex items-center gap-2 rounded-md bg-violet-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                             >
-                                                Hablemos !
-                                            </a>
-                                            <a
-                                                href="#"
-                                                className="text-sm font-semibold leading-6 text-gray-900"
-                                            >
-                                                Learn more{" "}
-                                                <span aria-hidden="true">
-                                                    →
-                                                </span>
-                                            </a>
+                                                <ChatIcon/>
+                                                Hablemos
+                                            </Link>
+                                        <Image src={DataAnalystBadge} width={0} height={0} className="w-32 h-32"/>
                                         </div>
                                     </div>
                                 </div>
