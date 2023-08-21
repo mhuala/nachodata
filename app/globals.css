@@ -19,6 +19,21 @@
     margin-top:16px;
 }
 
+#markdown p{
+    margin-top:32px;
+}
+
+#markdown li p::before{
+    content:"⦾";
+    margin-right:16px
+}
+
+#markdown li{
+    display: flex;
+    orientation: row;
+    margin-left:32px;
+    gap:48px
+}
 
 #markdown h2 { 
     font-size: 28 px;

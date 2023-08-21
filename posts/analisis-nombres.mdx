@@ -16,9 +16,9 @@ Si hay algo cambiante, ligado a la cultura y actualidad son los nombres. Hace po
 
 Primero siempre es interesante hacer una búsqueda en la página que queremos "scrapear" y ver los siguientes aspectos.
 
-1. Revisar la pestaña "Red" del navegador y ver si se puede localizar la petición que trae como respuesta los datos que necesitamos
+- Revisar la pestaña "Red" del navegador y ver si se puede localizar la petición que trae como respuesta los datos que necesitamos
 
-2. Ver si los datos solamente son visibles tras la interacción controlada de algun elemento de la página mediante algun framework de JavaScript (JQuery, react, vue, etc.)
+- Ver si los datos solamente son visibles tras la interacción controlada de algun elemento de la página mediante algun framework de JavaScript (JQuery, react, vue, etc.)
 
 En el primer caso hay que tener clara la URL a la cual se le debe hacer la petición HTTP y todos los requisitos para obtener una respuesta exitosa, para esto se debe inspeccionar bien la petición en la pestaña Red del navegador y entender la composición de la petición, generalmente basta con la carga útil (payloads) y los encabezados (headers).
 
@@ -26,7 +26,7 @@ En el segundo corresponde entender cuales interacciones con la interfaz necesita
 
 Cómo algo didactico se mostrará el scraping utilizando ambas metodologías, siempre es recomendable utilizar un seudocodigo o diagrama de flujo para ordenar en la mente la estructura del código, que muchas veces requiere bastantes anidaciones de ciclos.
 
-<H4> Método 1:</H4>
+ Método 1:
 
 Al realizar una busqueda con la pestaña _Red_ abierta se puede ver una petición dirigida a la siguiente URL:
 
