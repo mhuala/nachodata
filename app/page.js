@@ -26,7 +26,7 @@ export default function HomePage() {
                 </div>
 
                 {/* Header section */}
-                <div className="px-6 lg:px-8">
+                <div className="px-6 lg:px-8 animate-fade-left">
                     <main className=" px-2">
                         <div className="relative bg-transparent">
                             <div className="mx-auto max-w-7xl lg:grid lg:grid-cols-12 lg:gap-x-8 lg:px-8">

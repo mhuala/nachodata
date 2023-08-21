@@ -20,32 +20,45 @@
 }
 
 
-h2 { 
-    font-size: 28px;
+#markdown h2 { 
+    font-size: 28 px;
     margin-top: 14px;
     margin-bottom: 14px;
-    font:bold
+    font:bold;
+    font-family: var(--font-lulo);
+    background-color: #334155;
+    padding:4px;
+    margin-left:4px
 }
 
-h3 {
-    font-size: 28px;
+#markdown h3 {
+    font-size: 28 px;
     margin-top: 14px;
     margin-bottom: 14px;
-    font:bold
+    font-family: var(--font-lulo);
+    background-color: #334155;
+    padding:4px;
+    margin-left:4px
 }
 
-h4 {
-    font-size: 28px;
+#markdown h4 {
+    font-size: 28 px;
     margin-top: 14px;
     margin-bottom: 14px;
-    font:bold
+    font-family: var(--font-lulo);
+    background-color: #334155;
+    padding:4px;
+    margin-left:4px
 }
 
-h5 {
-    font-size: 28px;
+#markdown h5 {
+    font-size: 28 px;
     margin-top: 14px;
     margin-bottom: 14px;
-    font:bold
+    font-family: var(--font-lulo);
+    background-color: #334155;
+    padding:4px;
+    margin-left:4px
 }
 
 .skills {

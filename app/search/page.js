@@ -118,7 +118,7 @@ const SearchPage = ({ params }) => {
     const animatedComponents = makeAnimated();
 
     return (
-        <div className="flex flex-col mt-10 mx-auto items-center min-h-screen">
+        <div className="flex flex-col mt-10 mx-auto items-center min-h-screen animate-fade-left">
             <div className="w-5/6 rounded-lg bg-gray-700 flex flex-col p-6 gap-6">
                 <div className="flex flex-col items-center mx-auto gap-4">
                     <span className="text-white  text-xl px-2 italic">

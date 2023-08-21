@@ -47,7 +47,7 @@ const PostPage = async (props) => {
     const recommendedPosts = await getOtherPosts(posts, postContent.metadata);
 
     return (
-        <div className="flex flex-col">
+        <div className="flex flex-col animate-fade-left">
             <div className="mx-auto w-full md:w-10/12 lg:w-9/12 mt-12 bg-[#1F2937] rounded-t-2xl space-y-6">
                 {/* POST INFO */}
                 <div
@@ -84,7 +84,7 @@ const PostPage = async (props) => {
                         · {postContent.metadata.date}
                     </span>
                 </section>
-                <h1 className="text-gray-200 italic font-light text-lg px-10">
+                <h1 className="text-gray-200 font-light text-lg px-10">
                     {postContent.metadata.description}
                 </h1>
                 <span className="flex flex-row gap-4 px-10 items-center">
@@ -128,7 +128,7 @@ const PostPage = async (props) => {
                 {/* RECOMMENDED POSTS */}
             </div>
             <div className="flex flex-col lg:flex-row gap-8 mx-auto w-11/12 md:w-10/12 lg:w-9/12 mt-10 mb-10">
-                <RecommendedPost
+                {/* <RecommendedPost
                     title={recommendedPosts.firstPost.title}
                     description={recommendedPosts.firstPost.description}
                     date={recommendedPosts.firstPost.date}
@@ -145,7 +145,7 @@ const PostPage = async (props) => {
                     tags={recommendedPosts.secondPost.tags}
                     bannerURL={recommendedPosts.secondPost.bannerURL}
                     author={recommendedPosts.secondPost.author}
-                />
+                /> */}
             </div>
         </div>
     );

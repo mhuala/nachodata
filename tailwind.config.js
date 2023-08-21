@@ -19,6 +19,7 @@ module.exports = {
                 raledots: ["Raleway Dots", "cursive"],
                 roboto: ["Roboto Condensed", "sans-serif"],
                 zen: ["Zen Dots", "cursive"],
+                lulo: "var(--font-lulo)"
             },
             colors: {
                 pagegray: {

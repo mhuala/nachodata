@@ -1,8 +1,16 @@
-const Cite = () => {
+const Cite = ({children}) => {
     return (
-        <div>
-            Enter
-        </div>
+        <>
+            <span className="">
+            &quot;
+            </span>
+            <cite className="">
+                {children}
+            </cite>
+            <span className="">
+            &quot;
+            </span>
+        </>
     );
 }
 
