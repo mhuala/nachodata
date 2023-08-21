@@ -14,6 +14,11 @@
     background-color: rgba(255, 255, 255, .15);  
     backdrop-filter: blur(5px);
 } */
+#floating-button-tooltip{
+    margin-left:48px;
+    margin-top:16px;
+}
+
 
 h2 { 
     font-size: 28px;

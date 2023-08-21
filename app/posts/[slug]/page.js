@@ -121,7 +121,7 @@ const PostPage = async (props) => {
                 </span>
                 <hr className="border-2 border-[#CE3F73] drop-shadow-xl rounded-full mt-2" />
                 {/* POST CONTENT */}
-                <div className="text-white text-lg font-mono mt-12 pb-8 mb-12 px-10">
+                <div className="text-white mt-12 pb-8 mb-12 px-10">
                     <Note/>
                     <PostContent>{postContent.markdownContent}</PostContent>
                 </div>
