@@ -57,12 +57,12 @@ const PostPage = async (props) => {
                     }}
                 >
                     <div className="w-full h-full flex  justify-center items-center backdrop-blur-sm rounded-t-2xl">
-                        <h1 className="font-gothic text-fuchsia-50 text-2xl bg-gray-800 italic">
-                            <span className="text-purple-600 text-6xl font-mono">
+                        <h1 className="text-fuchsia-50 text-4xl skew-x-12 bg-gray-800 italic">
+                            <span className="text-purple-500 text-4xl font-mono">
                                 &quot;
                             </span>
                             {postContent.metadata.title}
-                            <span className="text-purple-600 text-6xl font-mono">
+                            <span className="text-purple-500 text-4xl font-mono">
                                 &quot;
                             </span>
                         </h1>
@@ -111,7 +111,7 @@ const PostPage = async (props) => {
                     {postContent.metadata.tags.map((tag) => {
                         return (
                             <h1
-                                className="text-gray-500 font-thin italic"
+                                className="text-gray-400 font-thin italic"
                                 key={tag}
                             >
                                 {tag}
@@ -119,7 +119,7 @@ const PostPage = async (props) => {
                         );
                     })}
                 </span>
-                <hr className="border-2 border-[#CE3F73] drop-shadow-xl rounded-full mt-2" />
+                <hr className="border-2 border-violet-400 drop-shadow-xl rounded-full mt-2" />
                 {/* POST CONTENT */}
                 <div className="text-white mt-12 pb-8 mb-12 px-10">
                     <Note/>

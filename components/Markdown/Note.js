@@ -3,7 +3,7 @@ const Note = () => {
         <div className="relative w-full flex flex-col justify-between bg-indigo-500 rounded-lg border border-violet-600 mb-6 py-5 px-4">
         <div>
           <h4 className="text-gray-950 font-bold mb-3 underline">IMPORTANTE</h4>
-          <p className="text-gray-100 text-sm">Debido a errores del paquete encargado de resaltar los bloques de código <code className="bg-indigo-800 p-0.5 rounded-md text-white">react-syntax-highlighter</code> cada URL que se encuentre posee una separación entre el doble slash y los dos puntos de la misma, en la parte de <code className="bg-indigo-800 p-0.5 text-white rounded-md">"https: //"</code> por lo que se recomienda prestar atención.</p>
+          <p className="text-gray-100 text-sm">Debido a errores del paquete encargado de resaltar los bloques de código <code className="bg-indigo-800 p-0.5 rounded-md text-white">react-syntax-highlighter</code> cada URL que se encuentre posee una separación entre el doble slash y los dos puntos de la misma, en la parte de <code className="bg-indigo-800 p-0.5 text-white rounded-md">&quot;https: //&quot;</code> por lo que se recomienda prestar atención.</p>
         </div>
     
         <svg className="absolute top-4 right-4 w-6 h-6" 

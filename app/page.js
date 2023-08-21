@@ -43,9 +43,9 @@ export default function HomePage() {
                                             </span>
                                         </h1>
                                         </div>
-                                        <p className="mt-6 text-lg leading-8 text-gray-100">
+                                        <p className="mt-6 text-lg leading-8 text-gray-100 font-semibold">
                                             Quiero ayudarte a tomar decisiones,{" "}
-                                            <span className="text-violet-500 font-bold">
+                                            <span className="bg-white px-0.5 skew-x-12  shadow-md text-violet-500 font-extrabold">
                                                 decisiones basadas en datos
                                             </span>
                                         </p>
@@ -86,7 +86,7 @@ export default function HomePage() {
                                         </div>
                                         <p className="mt-6 text-lg leading-8 text-gray-100">
                                             Quiero ayudarte a tomar decisiones,{" "}
-                                            <span className="text-violet-500 font-bold">
+                                            <span className="bg-white px-0.5 skew-x-12 shadow-md text-violet-500 font-extrabold">
                                                 decisiones basadas en datos 
                                             </span>
                                         </p>
