@@ -45,12 +45,7 @@ const Skills = () => {
                                             Reportería de datos
                                         </h2>
                                         <p className="leading-relaxed text-sm text-justify">
-                                            Donner du goût ? de la couleur aux
-                                            applications, je le fais afin de
-                                            rendre vos sites attrayants ?. Avant
-                                            de devenir webdesigner, depuis tout
-                                            petit j&apos;étais déjà familier à
-                                            la couleur et du dessin.
+                                            Manejo en software de Business Intelligence para crear reportes utiles al usuario sin descuidar el apartado de UX.
                                         </p>
                                     </div>
                                 </div>
@@ -80,12 +75,7 @@ const Skills = () => {
                                             Web Scraping
                                         </h2>
                                         <p className="leading-relaxed text-sm text-justify">
-                                            Donner du goût ? de la couleur aux
-                                            applications, je le fais afin de
-                                            rendre vos sites attrayants ?. Avant
-                                            de devenir webdesigner, depuis tout
-                                            petit j&apos;étais déjà familier à
-                                            la couleur et du dessin.
+                                            Manejo en distintas librerías y métodos de web scraping para la automatización de recolección de datos.
                                         </p>
                                     </div>
                                 </div>
@@ -115,12 +105,7 @@ const Skills = () => {
                                             Analisis de datos
                                         </h2>
                                         <p className="leading-relaxed text-sm text-justify">
-                                            Grâce à Php et ces frameworks
-                                            (Larave, Symfoni, Slim), je peux
-                                            vous réaliser un site dynamique
-                                            c&apos;est-à-dire qui interagie avec
-                                            votre base de données ?. Nous
-                                            pouvons essayer.
+                                            Manejo en metodología KDD para sacar conclusiones y crear soluciones/valor de los datos.
                                         </p>
                                     </div>
                                 </div>

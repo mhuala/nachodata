@@ -34,7 +34,9 @@ export default function HomePage() {
                                 <div className="hidden lg:grid px-6 pb-24 pt-10 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
                                     <div className="mx-auto lg:mx-0">
                                         <div className="flex items-center gap-4 relative">
+                                        <Link href="https://www.datacamp.com/certificate/DA0025329403828">
                                         <Image src={DataAnalystBadge} width={0} height={0} className="w-32 h-32 absolute top-0 -left-40 hidden 2xl:flex "/>
+                                        </Link>
                                         <h1 className="text-4xl font-bold tracking-tight text-gray-200  sm:text-6xl">
                                             Soy Nacho Huala,{" "}
                                             <span className="text-violet-500">
@@ -44,9 +46,9 @@ export default function HomePage() {
                                         </h1>
                                         </div>
                                         <p className="mt-6 text-lg leading-8 text-gray-100 font-semibold">
-                                            Quiero ayudarte a tomar decisiones,{" "}
+                                            Quiero ayudarte a tomar decisiones inteligentes,{" "}
                                             <span className="bg-white px-0.5 skew-x-12  shadow-md text-violet-500 font-extrabold">
-                                                decisiones basadas en datos
+                                                decisiones basadas en datos.
                                             </span>
                                         </p>
                                         <div className="mt-10 flex items-center gap-x-6">
@@ -85,9 +87,9 @@ export default function HomePage() {
                                             </h1>
                                         </div>
                                         <p className="mt-6 text-lg leading-8 text-gray-100">
-                                            Quiero ayudarte a tomar decisiones,{" "}
+                                            Quiero ayudarte a tomar decisiones inteligentes,{" "}
                                             <span className="bg-white px-0.5 skew-x-12 shadow-md text-violet-500 font-extrabold">
-                                                decisiones basadas en datos 
+                                                decisiones basadas en datos.
                                             </span>
                                         </p>
                                         <div className="mt-10 flex items-center justify-between">
@@ -98,7 +100,9 @@ export default function HomePage() {
                                                 <ChatIcon/>
                                                 Hablemos
                                             </Link>
-                                        <Image src={DataAnalystBadge} width={0} height={0} className="w-32 h-32"/>
+                                            <Link href="https://www.datacamp.com/certificate/DA0025329403828">
+                                                <Image src={DataAnalystBadge} width={0} height={0} className="w-32 h-32"/>
+                                            </Link>
                                         </div>
                                     </div>
                                 </div>
