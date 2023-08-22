@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ChatIcon } from "@/public/icons/icons";
+import { IdeasIcon, UserIcon } from "@/public/icons/icons";
 import DataAnalystBadge from "../public/webImages/dataAnalyst.svg"
 
 export default function HomePage() {
@@ -52,13 +52,19 @@ export default function HomePage() {
                                             </span>
                                         </p>
                                         <div className="mt-10 flex items-center gap-x-6">
-                                           
                                             <Link
                                                 href="/contact"
                                                 className="flex gap-2 items-center rounded-md bg-violet-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                             >
-                                                <ChatIcon/>
-                                                Hablemos !
+                                                <IdeasIcon/>
+                                                Proyectos
+                                            </Link>
+                                            <Link
+                                                href="/contact"
+                                                className="flex items-center gap-2 rounded-md px-3.5 py-2.5 text-sm font-semibold  bg-[#5dbea3] hover:bg-[#5dbe8d] text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                                            >
+                                                <UserIcon/>
+                                                Sobre mi
                                             </Link>
                                         </div>
                                     </div>
@@ -74,7 +80,7 @@ export default function HomePage() {
                                     />
                                 </div>
                                 {/* SM CONTENT */}
-                                <div className="grid lg:hidden px-6 pb-24 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
+                                <div className="grid lg:hidden px-6 pb-12 sm:pb-32 lg:col-span-7 lg:px-0 lg:pb-56 lg:pt-48 xl:col-span-6">
                                     <div className="mx-auto max-w-2xl lg:mx-0">
                                         <div className="flex items-center gap-4">
 
@@ -94,16 +100,23 @@ export default function HomePage() {
                                         </p>
                                         <div className="mt-10 flex items-center justify-between">
                                             <Link
-                                                href="/contact"
+                                                href="/about"
                                                 className="flex items-center gap-2 rounded-md bg-violet-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                                             >
-                                                <ChatIcon/>
-                                                Hablemos
+                                                <IdeasIcon/>
+                                                Proyectos
                                             </Link>
-                                            <Link href="https://www.datacamp.com/certificate/DA0025329403828">
-                                                <Image src={DataAnalystBadge} width={0} height={0} className="w-32 h-32"/>
+                                            <Link
+                                                href="/search"
+                                                className="flex items-center gap-2 rounded-md px-3.5 py-2.5 text-sm font-semibold  bg-[#5dbea3] hover:bg-[#5dbe8d] text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2"
+                                            >
+                                                <UserIcon/>
+                                                Sobre mi
                                             </Link>
                                         </div>
+                                            <Link href="https://www.datacamp.com/certificate/DA0025329403828">
+                                                <Image src={DataAnalystBadge} width={0} height={0} className="flex mx-auto w-32 h-32 mt-12"/>
+                                            </Link>
                                     </div>
                                 </div>
                                 {/* LG IMAGE */}

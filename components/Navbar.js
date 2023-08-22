@@ -103,31 +103,33 @@ export default function Navbar() {
             <div
                 className={
                     isClicked
-                        ? "flex flex-col md:hidden space-y-1 bg-gray-800 text-[#9EACE1] text-xl bg-brand w-full rounded-b-xl"
+                        ? "flex flex-col md:hidden space-y-1 bg-gray-800 text-[#9EACE1] text-xl bg-brand w-full rounded-b-xl "
                         : "hidden"
                 }
             >
+                <div className="border border-slate-400 mx-6 my-6 bg-slate-600">
                 <Link
                     href="/about"
-                    className="flex hover:bg-slate-600 p-2 space-x-4 items-center clickeable text-center mx-auto w-full ml-6"
+                    className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6"
                 >
                     <AboutIcon />
                     <span className="text-center font-semibold">Sobre mí</span>
                 </Link>
                 <Link
                     href="/contact"
-                    className="flex hover:bg-slate-600 p-2 space-x-4 items-center clickeable text-center mx-auto w-full ml-6"
+                    className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6"
                 >
                     <ContactIcon />
                     <span className="text-center font-semibold">Contacto</span>
                 </Link>
                 <Link
                     href="/search"
-                    className="flex hover:bg-slate-600 p-2 space-x-4 items-center clickeable text-center mx-auto w-full ml-6"
+                    className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6"
                 >
                     <ProjectsIcon />
                     <span className="text-center font-semibold">Proyectos</span>
                 </Link>
+                </div>
             </div>
         </nav>
     );
