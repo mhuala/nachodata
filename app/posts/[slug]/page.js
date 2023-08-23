@@ -127,8 +127,8 @@ const PostPage = async (props) => {
                 </div>
                 {/* RECOMMENDED POSTS */}
             </div>
-            <div className="flex flex-col lg:flex-row gap-8 mx-auto w-11/12 md:w-10/12 lg:w-9/12 mt-10 mb-10">
-                {/* <RecommendedPost
+           {/* <div className="flex flex-col lg:flex-row gap-8 mx-auto w-11/12 md:w-10/12 lg:w-9/12 mt-10 mb-10">
+                 <RecommendedPost
                     title={recommendedPosts.firstPost.title}
                     description={recommendedPosts.firstPost.description}
                     date={recommendedPosts.firstPost.date}
@@ -145,8 +145,8 @@ const PostPage = async (props) => {
                     tags={recommendedPosts.secondPost.tags}
                     bannerURL={recommendedPosts.secondPost.bannerURL}
                     author={recommendedPosts.secondPost.author}
-                /> */}
-            </div>
+                /> 
+            </div>*/}
         </div>
     );
 };

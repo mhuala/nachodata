@@ -2,16 +2,17 @@
 import Markdown from "markdown-to-jsx";
 import { useEffect, useState, useRef } from "react";
 import { useHeadings, useScrollSpy } from "../../utils/hooks";
-import { Tooltip as ReactTooltip } from "react-tooltip";
-
+import dynamic from "next/dynamic";
 import Code from "../Markdown/Code";
 import YoutubeVideo from "../Markdown/YoutubeVideo";
-import PowerBI from "../Markdown/PowerBI";
 import Photo from "../Markdown/Photo";
 import Url from "../Markdown/Url";
 import Repository from "../Markdown/Repository";
 import Cite from "../Markdown/Cite";
 import Note from "../Markdown/Note";
+import PowerBi from "../Markdown/PowerBI";
+
+//const PowerBi = dynamic(() => import("../Markdown/PowerBI"), { ssr: false });
 
 const PostContent = ({ children }) => {
     const [visibleTableOfContent, setVisibleTableOfContent] = useState(false);
@@ -22,26 +23,28 @@ const PostContent = ({ children }) => {
     );
 
     return (
-        <div id="markdown" className="text-lg font-thin text-justify">
-            {/* CONTENIDO post */}
-            <Markdown
-                options={{
-                    overrides: {
-                        Code: { component: Code },
-                        Photo: { component: Photo },
-                        PoweBI: { component: PowerBI },
-                        Url: { component: Url },
-                        YoutubeVIdeo: { component: YoutubeVideo },
-                        Repository: {component: Repository},
-                        Note: {component: Note},
-                        Cite: {component: Cite}
-                    },
-                }}
-            >
-                {children}
-            </Markdown>
+        <>
+            <div id="markdown" className="text-lg font-thin text-justify block">
+                {/* CONTENIDO post */}
+                <Markdown
+                    options={{
+                        overrides: {
+                            Code: { component: Code },
+                            Photo: { component: Photo },
+                            PowerBi: { component: PowerBi },
+                            Url: { component: Url },
+                            YoutubeVideo: { component: YoutubeVideo },
+                            Repository: {component: Repository},
+                            Note: {component: Note},
+                            Cite: {component: Cite}
+                        },
+                    }}
+                >
+                    {children}
+                </Markdown>
 
-            {/* TABLE OF CONTENTS HACER SIDEBAR PLEGABLE PARA MOVIL*/}
+                {/* TABLE OF CONTENTS HACER SIDEBAR PLEGABLE PARA MOVIL*/}
+            </div>
             <div className={visibleTableOfContent ? "block" : "hidden"}>
                 <nav
                     style={{ position: "fixed", top: "8em", right: "0" }}
@@ -87,12 +90,13 @@ const PostContent = ({ children }) => {
                 </nav>
             </div>
             {/* FLOATING BUTTON */}
-            <div data-tooltip-id="floating-button-tooltip" class="fixed bottom-0 right-0 p-2  flex items-end justify-end w-24 h-24 z-40">
+            <div className="fixed bottom-0 right-0 p-2  flex items-end justify-end w-24 h-24 z-40">
                 <button
+                    id="floating"
                     onClick={() => {
                         setVisibleTableOfContent(!visibleTableOfContent);
                     }}
-                    className="text-white shadow-xl flex items-center justify-center rounded-full"
+                    className="text-white shadow-xl flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 absolute"
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -110,13 +114,7 @@ const PostContent = ({ children }) => {
                     </svg>
                 </button>
             </div>
-
-            <ReactTooltip
-                id="floating-button-tooltip"
-                place="left"
-                content="Tabla de contenidos"
-            />
-        </div>
+        </>
     );
 };
 export default PostContent;
