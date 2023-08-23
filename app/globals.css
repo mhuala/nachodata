@@ -22,13 +22,34 @@
 }
 
 #markdown p{
-    margin-top:32px;
+    margin-top:24px;
+    padding: 8px;
 }
 
 #markdown li p::before{
     content:"•";
     margin-right:12px
 }
+
+#markdown h2::before{
+    content:"👇🏼";
+    margin-right:12px;
+}
+#markdown h3::before{
+    content:"👇🏼";
+    margin-right:12px;
+}
+
+#markdown h4::before{
+    content:"👇🏼";
+    margin-right:12px;
+}
+
+#markdown h5::before{
+    content:"👇🏼";
+    margin-right:12px;
+}
+
 
 #markdown li{
     display: flex;
@@ -38,43 +59,62 @@
 }
 
 #markdown h2 { 
-    font-size: 24 px;
+    border: #cbe8f0;
+    border-style: dotted;
+    border-width: 4px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
-    font:bold;
     font-family: var(--font-lulo);
-    background-color: rgb(55 65 81);
+    background-color: #262626;
     padding:16px;
     margin-left:4px
 }
 
 #markdown h3 {
-    font-size: 24 px;
+    border: #cbe8f0;
+    border-style: dotted;
+    border-width: 4px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
     font-family: var(--font-lulo);
-    background-color: rgb(55 65 81);
-    padding:4px;
+    background-color: #262626;
+    padding:16px;
     margin-left:4px
 }
 
 #markdown h4 {
-    font-size: 24 px;
+    border: #cbe8f0;
+    border-style: dotted;
+    border-width: 4px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
     font-family: var(--font-lulo);
-    background-color: rgb(55 65 81);
-    padding:4px;
+    background-color: #262626;
+    padding:16px;
     margin-left:4px
 }
 
 #markdown h5 {
-    font-size: 24 px;
+    border: #cbe8f0;
+    border-style: dotted;
+    border-width: 4px;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
     font-family: var(--font-lulo);
-    background-color: rgb(55 65 81);
-    padding:4px;
+    background-color: #262626;
+    padding:16px;
     margin-left:4px
 }
 
