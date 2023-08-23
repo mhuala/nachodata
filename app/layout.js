@@ -2,7 +2,6 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import localFont from "next/font/local"
 import Head from "next/head";
-import Script from "next/head";
 import Footer from "@/components/Footer";
 
 
@@ -31,11 +30,6 @@ export default async function RootLayout({ children }) {
             <Head>
                 <meta charset="UTF-8" />
             </Head>
-            <Script
-                src="https://unpkg.com/pattern.css"
-                rel="stylesheet"
-                strategy="beforeInteractive"
-            />
             <body className="bg-gray-900  flex-col min-h-screen justify-between">
                 <Navbar />
                 <div className="mb-auto">{children}</div>

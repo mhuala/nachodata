@@ -22,6 +22,7 @@ async function getPostMetadata() {
             description: matterResult.data.description,
             author: matterResult.data.author,
             bannerURL: matterResult.data.bannerURL,
+            time: matterResult.data.time,
         };
     });
     return post;

@@ -12,10 +12,10 @@ const NotFound = () => {
                     className="w-auto h-64 md:h-5/6 grayscale"
                 />
                 <div className="flex flex-col items-center mx-auto">
-                    <h2 className="text-white text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl font-extrabold">
+                    <h2 className=" text-2xl lg:text-3xl xl:text-4xl 2xl:text-6xl text-amber-700 font-extrabold font-gothic">
                         UPS !
                     </h2>
-                    <h3 className="text-white text-2xl text-center lg:text-3xl xl:text-4xl 2xl:text-6xl w-full font-gothic italic font-semibold">
+                    <h3 className="text-white text-2xl text-center lg:text-3xl xl:text-4xl 2xl:text-6xl w-full font-gothic  font-semibold">
                         No encontramos nada que coincida :({" "}
                     </h3>
                 </div>

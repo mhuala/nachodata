@@ -120,7 +120,7 @@ const SearchPage = ({ params }) => {
     return (
         <div className="flex flex-col mt-10 mx-auto items-center min-h-screen animate-fade-left">
             <div className="w-5/6 rounded-lg bg-gray-700 flex flex-col p-6 gap-6">
-                <div className="flex flex-col items-center mx-auto gap-4">
+                <div className="flex flex-col  gap-4">
                     <span className="text-white  text-xl px-2 italic">
                         Busca y filtra entre las diferentes publicaciones
                         existentes según contenido o tipo de tecnologías
@@ -158,6 +158,7 @@ const SearchPage = ({ params }) => {
                                 tags={post.tags}
                                 date={post.date}
                                 key={post.id}
+                                time={post.time}
                             />
                         );
                     })
@@ -169,7 +170,7 @@ const SearchPage = ({ params }) => {
                 <button
                     type="button"
                     onClick={prevPage}
-                    className="bg-gray-800 text-white rounded-l-md border-r border-gray-100 py-2 hover:bg-red-700 hover:text-white px-3"
+                    className="bg-gray-800 text-white rounded-l-md border-r border-gray-100 py-2 hover:bg-violet-700 hover:text-white px-3"
                 >
                     <div className="flex flex-row align-middle">
                         <svg
@@ -190,7 +191,7 @@ const SearchPage = ({ params }) => {
                 <button
                     type="button"
                     onClick={nextPage}
-                    className="bg-gray-800 text-white rounded-r-md py-2 border-l border-gray-200 hover:bg-red-700 hover:text-white px-3"
+                    className="bg-gray-800 text-white rounded-r-md py-2 border-l border-gray-200 hover:bg-violet-700 hover:text-white px-3"
                 >
                     <div className="flex flex-row align-middle">
                         <span className="mr-2">Siguiente</span>

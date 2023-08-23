@@ -30,15 +30,19 @@ const PostCard = ({
     description,
     author,
     bannerURL,
+    time
 }) => {
     return (
+        <Link
+            href={`/posts/${slug}`}
+            passHref>
         <div
             className=" animate-fade-left
-        flex flex-col text-white shadow-md hover:border rounded-xl text-center px-4 py-4 justify-between h-full bg-pagegray space-y-2"
+        flex flex-col text-white shadow-md hover:border rounded-xl text-center px-4 py-4 justify-between h-full bg-slate-700 hover:bg-pagegray space-y-2"
         >
             {/* <!-- IMAGE -->  */}
             <div className="relative overflow-hidden cursor-pointer rounded-xl ">
-
+<>
                 <Image
                     src={bannerURL}
                     alt={title}
@@ -46,9 +50,7 @@ const PostCard = ({
                     height="0"
                     className="h-48 rounded-xl object-cover hover:scale-110 opacity-50 hover:opacity-75 transition duration-300 ease-in-out w-full"
                 />
-              
-                <Link
-                href={`/posts/${slug}`} passHref>
+                </>
                 <div className="absolute top-5 left-5">
                     <div className="flex justify-end gap-2 bg-white rounded-full px-2 py-2 shadow-2xl">
                         {tags.map((tag) => {
@@ -66,32 +68,21 @@ const PostCard = ({
                         })}
                     </div>
                 </div>
-                </Link>
             </div>
-            <Link
-                href={`/posts/${slug}`}
-                passHref
-                className="text-left sm:text-xl lg:text-2xl text-indigo-500 font-rale font-bold h-16 py-4"
-            >
+                <h2 className="text-left sm:text-xl lg:text-2xl text-violet-400 hover:text-indigo-500  font-rale font-bold h-16 py-4">
                 {title}
-            </Link>
+                </h2>
             {/* <!-- CONTENT -->  */}
-            <Link
-                href={`/posts/${slug}`}
-                passHref>
             <p className="line-clamp-3 text-sm sm:text-base lg:text-lg text-gray-300 text-left overflow-ellipsis h-24 py-4">
                 {description}
             </p>
-              </Link>
             {/* <!-- FINAL SECTION -->  */}
-            <Link
-                href={`/posts/${slug}`}
-                passHref>
-            <section className="flex flex-row items-end w-full gap-2">
-                    <TimeIcon /> 2 min read
+
+            <section className="flex flex-row items-end w-full gap-2 mt-2">
+                    <TimeIcon /> {time} min read
             </section>
-            </Link>
         </div>
+            </Link>
     );
 };
 
