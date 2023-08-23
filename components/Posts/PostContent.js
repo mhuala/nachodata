@@ -5,11 +5,12 @@ import Markdown from "markdown-to-jsx";
 import Code from "../Markdown/Code";
 import YoutubeVideo from "../Markdown/YoutubeVideo";
 import Photo from "../Markdown/Photo";
-import Url from "../Markdown/Url";
+import ButtonUrl from "../Markdown/ButtonUrl";
 import Repository from "../Markdown/Repository";
 import Badge from "../Markdown/Badge";
 import Note from "../Markdown/Note";
 import PowerBi from "../Markdown/PowerBI";
+import Url from "../Markdown/Url";
 
 
 
@@ -23,7 +24,7 @@ const PostContent = ({ children }) => {
 
     return (
         <>
-            <div id="markdown" className="text-lg font-sans animate-fade-left">
+            <div id="markdown" className="text-xl font-sans animate-fade-left">
                 {/* CONTENIDO post */}
                 <Markdown
                     options={{
@@ -31,11 +32,12 @@ const PostContent = ({ children }) => {
                             Code: { component: Code },
                             Photo: { component: Photo },
                             PowerBi: { component: PowerBi },
-                            Url: { component: Url },
+                            ButtonUrl: { component: ButtonUrl },
                             YoutubeVideo: { component: YoutubeVideo },
                             Repository: {component: Repository},
                             Note: {component: Note},
-                            Badge: {component: Badge}
+                            Badge: {component: Badge},
+                            Url:{component:Url}
                         },
                     }}
                 >

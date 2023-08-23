@@ -5,6 +5,21 @@
 @tailwind components;
 @tailwind utilities;
 
+#repocard div{
+    background-color: #374151 !important;
+}
+
+#repocard a{
+    color: #37bcdd !important;
+}
+
+#repocard span{
+    color: #cbe8f0 !important;
+}
+
+#repocard svg{
+    fill: #cbe8f0 !important;
+}
 
 #markdown p{
     margin-top:32px;
@@ -29,7 +44,7 @@
     font:bold;
     font-family: var(--font-lulo);
     background-color: rgb(55 65 81);
-    padding:4px;
+    padding:16px;
     margin-left:4px
 }
 

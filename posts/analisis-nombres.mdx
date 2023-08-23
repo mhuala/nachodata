@@ -30,20 +30,15 @@ Cómo algo didactico se mostrará el scraping utilizando ambas metodologías, si
 
 Al realizar una busqueda con la pestaña _Red_ abierta se puede ver una petición dirigida a la siguiente URL:
 
-**HEADERS.PNG**
-
-<Url
-    callToAction="Página registro civil"
-    href="https://codigo.registrocivil.cl/api/estnombre/ltRanking/"
-></Url>
+<Photo postId="1" fileName="headers"/>
 
 Se puede observar que las opciones de _Año_ , _Mes_ y _Sexo_ son enviadas como un JSON en la carga útil.
 
-**PAYLOAD.PNG**
+<Photo postId="1" fileName="payload"/>
 
 Finalmente la petición envía una lista de JSONs con los nombres y la frecuencia de los mismos referentes a los filtros de búsqueda incluidos.
 
-**RESPONSE.PNG**
+<Photo postId="1" fileName="response"/>
 
 Una vez visto esto podemos hacer un diagrama de procesos para ordenar el funcionamiento del código antes de escribirlo.
 
@@ -208,28 +203,26 @@ df.to_csv(f"Nombres {str(year[0])}-{str(year[-1])}.csv")
 
 Una vez visto y obtenidos los datos de cualquiera de ambos métodos podemos analizarlos y responder a priori preguntas como:
 
--   ¿Qué?
+-   ¿Han bajado las incscirpciones?
 
--   ¿Qué?
+-   ¿Qué sexo es el que posee más inscripciones?
 
--   ¿Qué?
+-   ¿Las inscripciones de qué sexo han tenido más creatividad?
 
--   ¿Qué?
+-   ¿Cúales son los nombres que han ganado o perdido más popularidad interanualmente?
 
--   ¿Qué?
+-   ¿Qué ha pasdado con los nombres más populares al inicio de la década?
 
--   ¿Qué?
-
--   ¿Qué?
-
--   ¿Qué?
-
--   ¿Qué?
-
--   ¿Qué?
+-   ¿Qué tanto influye el deporte en la inscripción de nombres?
 
 <PowerBi url="https://app.powerbi.com/view?r=eyJrIjoiNmYxNDMxNGQtODU4MS00NTM1LTk3ZmUtYThmZTI3OWNlMGQ0IiwidCI6IjA3OWIxMWNmLWJjYTEtNDQ2My04NmMyLTI5NjhmMjg0ZTE5ZSIsImMiOjR9"/>
 
-## 
+## Material complementario
+
+El repositorio con todos los archivos puede ser encontrado en:
 
 <Repository repoName="nachodata"/>
+
+Otro material que puede ser de ayuda:
+
+-   <Url href="https://codigo.registrocivil.cl/api/estnombre/ltRanking/">Página registro civil</Url>

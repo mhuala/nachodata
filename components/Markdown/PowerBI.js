@@ -21,7 +21,7 @@ const PowerBi = ({url}) => {
     <>
       <div id="accordionExample" className="mt-8">
         <div className="rounded-t-lg border border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
-          <h1 className="mb-0 font-lulo" id="headingOne">
+          <h1 className="mb-0 font-mono" id="headingOne">
             <button
               className={`${
                 activeElement === "element1" &&

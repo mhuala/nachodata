@@ -2,8 +2,8 @@ import RepoCard from "react-repo-card";
 
 const Repository = ({repoUrl,imageUrl,repoName,desc}) => {
     return (
-      <div style={{ width: "405px" }}>
-      <RepoCard username="mhuala" repository={repoName} />
+      <div id="repocard" className="w-48 mt-8">
+      <RepoCard username="mhuala" repository={repoName}/>
     </div>
     //   <Link href={repoUrl} class="w-72 bg-slate-900 border rounded-lg border-gray-700 p-5 shadow hover:bg-gray-700 delay-100 duration-200">
     //     <div class="flex flex-row">

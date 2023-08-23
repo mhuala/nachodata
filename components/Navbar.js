@@ -108,27 +108,36 @@ export default function Navbar() {
                 }
             >
                 <div className="border border-slate-400 mx-6 my-6 bg-slate-600">
-                <Link
-                    href="/about"
-                    className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6"
-                >
-                    <AboutIcon />
-                    <span className="text-center font-semibold">Sobre mí</span>
-                </Link>
-                <Link
-                    href="/contact"
-                    className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6"
-                >
-                    <ContactIcon />
-                    <span className="text-center font-semibold">Contacto</span>
-                </Link>
-                <Link
-                    href="/search"
-                    className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6"
-                >
-                    <ProjectsIcon />
-                    <span className="text-center font-semibold">Proyectos</span>
-                </Link>
+                    <button onClick={() => setisClicked(!isClicked)}
+                            className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6">
+                        <Link
+                            href="/about"
+                            className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6">
+                        
+                            <AboutIcon />
+                            <span className="text-center font-semibold">Sobre mí</span>
+                        </Link>
+                    </button>
+                    <button onClick={() => setisClicked(!isClicked)}
+                            className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6">
+                        <Link
+                            href="/contact"
+                            className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6"
+                        >
+                            <ContactIcon />
+                            <span className="text-center font-semibold">Contacto</span>
+                        </Link>
+                    </button>
+                    <button onClick={() => setisClicked(!isClicked)}
+                            className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6">
+                        <Link
+                            href="/search"
+                            className="flex hover:bg-slate-700 p-2 space-x-4 items-center clickeable text-center mx-auto w-full px-6"
+                        >
+                            <ProjectsIcon />
+                            <span className="text-center font-semibold">Proyectos</span>
+                        </Link>
+                    </button>
                 </div>
             </div>
         </nav>

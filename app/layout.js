@@ -7,7 +7,7 @@ import Footer from "@/components/Footer";
 
 
 export const metadata = {
-    title: "Nachodata - Todo en datos",
+    title: "Nachodata - Analista de datos",
     description: "Analista de datos",
 };
 
