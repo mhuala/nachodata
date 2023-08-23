@@ -48,7 +48,7 @@ const PostPage = async (props) => {
 
     return (
         <div className="flex flex-col">
-            <div className="mx-auto w-full md:w-10/12 lg:w-9/12 mt-12 mb-12 bg-[#1F2937] rounded-t-2xl space-y-6">
+            <div className="mx-auto w-full md:w-9/12 lg:w-7/12 mt-12 mb-12 bg-[#1F2937] rounded-t-2xl space-y-6">
                 {/* POST INFO */}
                 <div
                     className="w-full h-48 bg-cover bg-center rounded-t-2xl grayscale"

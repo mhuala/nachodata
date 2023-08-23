@@ -12,7 +12,7 @@ bannerURL: https://media.tacdn.com/media/attractions-splice-spp-674x446/07/bd/6f
 
 Si hay algo cambiante, ligado a la cultura y actualidad son los nombres. Hace poco el Registro Civil lanzó su portal de datos en dónde además de los nombre inscritos por sexo y mes de cada año en el período 2010-2021 y claro, por qué no analizar los datos para prácticar y reforzar técnicas de _Web Scraping_ y _Visualización de datos_.
 
-### Escogiendo el método de scraping:
+## Escogiendo el método de scraping:
 
 Primero siempre es interesante hacer una búsqueda en la página que queremos "scrapear" y ver los siguientes aspectos.
 
@@ -26,7 +26,7 @@ En el segundo corresponde entender cuales interacciones con la interfaz necesita
 
 Cómo algo didactico se mostrará el scraping utilizando ambas metodologías, siempre es recomendable utilizar un seudocodigo o diagrama de flujo para ordenar en la mente la estructura del código, que muchas veces requiere bastantes anidaciones de ciclos.
 
- Método 1:
+### Método 1:
 
 Al realizar una busqueda con la pestaña _Red_ abierta se puede ver una petición dirigida a la siguiente URL:
 
@@ -113,7 +113,7 @@ df = pd.DataFrame.from_records(l)
 df.to_csv(f"Nombres {str(year[0])}-{str(year[-1])}.csv")
 </Code>
 
-#### Método 2:
+### Método 2:
 
 Acá existen opciones para simular el uso que daría un usuario a un navegador como _Pyppeteer_, _Selenium_ o mi preferido _PlayWright_. Estos paquetes utilizados en lo que uno podría denominar como un y son altamente recomendables y muchas veces la única opción cuando el flujo de procesos para poder realizar el scraping es muy extenso o supone de grandes barreras de seguridad.
 
@@ -204,7 +204,7 @@ df = pd.DataFrame.from_records(l)
 df.to_csv(f"Nombres {str(year[0])}-{str(year[-1])}.csv")
 </Code>
 
-# Visualización y análisis:
+## Visualización y análisis:
 
 Una vez visto y obtenidos los datos de cualquiera de ambos métodos podemos analizarlos y responder a priori preguntas como:
 
@@ -229,3 +229,7 @@ Una vez visto y obtenidos los datos de cualquiera de ambos métodos podemos anal
 -   ¿Qué?
 
 <PowerBi url="https://app.powerbi.com/view?r=eyJrIjoiNmYxNDMxNGQtODU4MS00NTM1LTk3ZmUtYThmZTI3OWNlMGQ0IiwidCI6IjA3OWIxMWNmLWJjYTEtNDQ2My04NmMyLTI5NjhmMjg0ZTE5ZSIsImMiOjR9"/>
+
+## 
+
+<Repository repoName="nachodata"/>
