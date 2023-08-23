@@ -47,8 +47,8 @@ const PostPage = async (props) => {
     const recommendedPosts = await getOtherPosts(posts, postContent.metadata);
 
     return (
-        <div className="flex flex-col animate-fade-left">
-            <div className="mx-auto w-full md:w-10/12 lg:w-9/12 mt-12 bg-[#1F2937] rounded-t-2xl space-y-6">
+        <div className="flex flex-col">
+            <div className="mx-auto w-full md:w-10/12 lg:w-9/12 mt-12 mb-12 bg-[#1F2937] rounded-t-2xl space-y-6">
                 {/* POST INFO */}
                 <div
                     className="w-full h-48 bg-cover bg-center rounded-t-2xl grayscale"
@@ -56,8 +56,8 @@ const PostPage = async (props) => {
                         backgroundImage: `url(${postContent.metadata.bannerURL})`,
                     }}
                 >
-                    <div className="w-full h-full flex  justify-center items-center backdrop-blur-sm rounded-t-2xl">
-                        <h1 className="text-fuchsia-50 text-4xl skew-x-12 bg-gray-800 italic">
+                    <div className="w-4/5 h-full flex mx-auto justify-center items-center backdrop-blur-sm rounded-t-2xl">
+                        <h1 className="text-fuchsia-50 text-4xl skew-x-12 bg-gray-800 italic text-center md:text-left">
                             <span className="text-purple-500 text-4xl font-mono">
                                 &quot;
                             </span>

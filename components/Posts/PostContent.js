@@ -1,18 +1,17 @@
 "use client";
-import Markdown from "markdown-to-jsx";
 import { useEffect, useState, useRef } from "react";
 import { useHeadings, useScrollSpy } from "../../utils/hooks";
-import dynamic from "next/dynamic";
+import Markdown from "markdown-to-jsx";
 import Code from "../Markdown/Code";
 import YoutubeVideo from "../Markdown/YoutubeVideo";
 import Photo from "../Markdown/Photo";
 import Url from "../Markdown/Url";
 import Repository from "../Markdown/Repository";
-import Cite from "../Markdown/Cite";
+import Badge from "../Markdown/Badge";
 import Note from "../Markdown/Note";
-import PowerBi from "../Markdown/PowerBI";
+import PowerBi from "../Markdown/PowerBi";
 
-//const PowerBi = dynamic(() => import("../Markdown/PowerBI"), { ssr: false });
+
 
 const PostContent = ({ children }) => {
     const [visibleTableOfContent, setVisibleTableOfContent] = useState(false);
@@ -24,7 +23,7 @@ const PostContent = ({ children }) => {
 
     return (
         <>
-            <div id="markdown" className="text-lg font-thin text-justify block">
+            <div id="markdown" className="text-lg font-sans animate-fade-left">
                 {/* CONTENIDO post */}
                 <Markdown
                     options={{
@@ -36,7 +35,7 @@ const PostContent = ({ children }) => {
                             YoutubeVideo: { component: YoutubeVideo },
                             Repository: {component: Repository},
                             Note: {component: Note},
-                            Cite: {component: Cite}
+                            Badge: {component: Badge}
                         },
                     }}
                 >
@@ -50,7 +49,7 @@ const PostContent = ({ children }) => {
                     style={{ position: "fixed", top: "8em", right: "0" }}
                     className="bg-slate-900 border rounded-l-lg z-10"
                 >
-                    <ul className="text-white p-4">
+                    <ul className="text-white font-thin p-4">
                         <div className="flex flex-row gap-2 items-center mb-4">
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
@@ -66,7 +65,7 @@ const PostContent = ({ children }) => {
                             <li
                                 key={heading.id}
                                 style={{ marginLeft: `${heading.level}em` }}
-                                className="font-mono flex gap-1"
+                                className=" flex gap-1"
                             >
                                 • 
                                 <a
@@ -90,13 +89,13 @@ const PostContent = ({ children }) => {
                 </nav>
             </div>
             {/* FLOATING BUTTON */}
-            <div className="fixed bottom-0 right-0 p-2  flex items-end justify-end w-24 h-24 z-40">
+            <div className="fixed bottom-0 right-4 p-2  flex items-end justify-end z-40 transform hover:-translate-y-2 transition-transform duration-500 ease-in-out">
                 <button
                     id="floating"
                     onClick={() => {
                         setVisibleTableOfContent(!visibleTableOfContent);
                     }}
-                    className="text-white shadow-xl flex items-center justify-center rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 absolute"
+                    className=""
                 >
                     <svg
                         xmlns="http://www.w3.org/2000/svg"

@@ -6,7 +6,7 @@ const Url = ({ callToAction, href }) => {
             <div className="inline-block mr-2 mt-2">
                 <div
                     type="button"
-                    className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-gray-700 hover:bg-gray-900 hover:shadow-lg flex items-center space-x-2"
+                    className="focus:outline-none text-white text-sm py-2.5 px-5 rounded-md bg-gray-700 hover:bg-[#5f7392] hover:shadow-lg flex items-center space-x-2"
                 >
                     <span>{callToAction}</span>
                     <svg
