@@ -71,13 +71,13 @@ const PostPage = async (props) => {
                 <section className="text-white flex flex-row items-center justify-center mx-auto space-x-4 w-full py-2 px-10">
                     <Image
                         alt="avatar"
-                        src="https://images.generated.photos/8OAGobSgGzf4uK93LKdKefvnnrv4ODAV0CaWrSILXEI/rs:fit:512:512/wm:0.95:sowe:18:18:0.33/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDczODU0LmpwZw.jpg"
+                        src="/webImages/profile.jpg"
                         width="0"
                         height="0"
-                        className=" rounded-full h-10 w-10"
+                        className=" rounded-full h-10 w-10 border border-2 border-violet-500"
                     />
                     <span className="font-mono w-full flex gap-2">
-                        By{" "}
+                        Por{" "}
                         <h6 className="underline">
                             {postContent.metadata.author}
                         </h6>

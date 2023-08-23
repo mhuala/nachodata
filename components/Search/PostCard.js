@@ -44,7 +44,7 @@ const PostCard = ({
                     alt={title}
                     width="0"
                     height="0"
-                    className="rounded-xl object-cover hover:scale-110 opacity-50 hover:opacity-75 transition duration-300 ease-in-out w-full"
+                    className="h-48 rounded-xl object-cover hover:scale-110 opacity-50 hover:opacity-75 transition duration-300 ease-in-out w-full"
                 />
               
                 <Link
