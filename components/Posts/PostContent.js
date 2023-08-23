@@ -9,7 +9,7 @@ import Url from "../Markdown/Url";
 import Repository from "../Markdown/Repository";
 import Badge from "../Markdown/Badge";
 import Note from "../Markdown/Note";
-import PowerBi from "../Markdown/PowerBi";
+import PowerBi from "../Markdown/PowerBI";
 
 
 
