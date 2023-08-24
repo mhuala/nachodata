@@ -11,6 +11,7 @@ import Badge from "../Markdown/Badge";
 import Note from "../Markdown/Note";
 import PowerBi from "../Markdown/PowerBI";
 import Url from "../Markdown/Url";
+import Extra from "../Markdown/Extra";
 
 
 
@@ -37,7 +38,8 @@ const PostContent = ({ children }) => {
                             Repository: {component: Repository},
                             Note: {component: Note},
                             Badge: {component: Badge},
-                            Url:{component:Url}
+                            Url:{component:Url},
+                            Extra: {component:Extra}
                         },
                     }}
                 >

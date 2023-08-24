@@ -41,21 +41,15 @@ Finalmente la petición envía una lista de JSONs con los nombres y la frecuenci
 
 <Photo postId="1" fileName="response"/>
 
-Una vez visto esto podemos hacer un diagrama de procesos para ordenar el funcionamiento del código antes de escribirlo.
 
-
-**DIAGRAMA FLUJO.PNG**
-
-Primero se importan las librerías a utilizar _Pandas_ será utilizado para crear el archivo .CSV basado en un DataFrame al finalizar de recolectar los datos.
+En un comienzo se importan las librerías a utilizar _Pandas_ será utilizado para crear el archivo .CSV basado en un DataFrame al finalizar de recolectar los datos.
 
 <Code language="python">
 import pandas as pd 
 import requests
 </Code>
 
-Se declara la URL a la que apuntaran las peticiones y también el header, de estructura similar al visto en la primera imagen de esta publicación.
-
-Se crean las listas que contienen las opciones seleccionables en cada búsqueda.
+Se declara la URL a la que apuntaran las peticiones y también el header, de estructura similar al visto en la primera imagen de esta publicación. Posteriormente se crean las listas que contienen las opciones seleccionables en cada búsqueda.
 
 <Code language="python">
 REGISTRO_CIVIL_URL = "https: //codigo.registrocivil.cl/api/estnombre/ltRanking/"
@@ -218,12 +212,13 @@ Una vez visto y obtenidos los datos de cualquiera de ambos métodos podemos anal
 
 <PowerBi url="https://app.powerbi.com/view?r=eyJrIjoiNmYxNDMxNGQtODU4MS00NTM1LTk3ZmUtYThmZTI3OWNlMGQ0IiwidCI6IjA3OWIxMWNmLWJjYTEtNDQ2My04NmMyLTI5NjhmMjg0ZTE5ZSIsImMiOjR9"/>
 
-## Material complementario
+<Extra>
+    Otro material que puede ser de ayuda:
+
+<ButtonUrl href="https://estadisticas.sed.srcei.cl" callToAction="Página registro civil"/>
+<ButtonUrl href="https://playwright.dev/python/docs/intro" callToAction="Documentación Playwright"/>
 
 El repositorio con todos los archivos puede ser encontrado en:
 
-<Repository repoName="nachodata"/>
-
-Otro material que puede ser de ayuda:
-
--   <Url href="https://codigo.registrocivil.cl/api/estnombre/ltRanking/">Página registro civil</Url>
+<Repository repoName="analisis-nombres"/>
+</Extra>

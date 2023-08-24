@@ -5,6 +5,10 @@
 @tailwind components;
 @tailwind utilities;
 
+#final ::before{
+    content: "";
+}
+
 #repocard div{
     background-color: #374151 !important;
 }
