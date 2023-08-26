@@ -17,12 +17,18 @@ Antes de la ejecución del código se recomienda cambiar los nombres de los arch
 BDExportacionesAño_.csv
 </Code>
 
-<H2>¿Qué es la VCR?</H2>
+## ¿Qué es la VCR?
 
 Las ventajas comparativas reveladas son un concepto económico que se utiliza para analizar y comprender los patrones de comercio internacional entre países. En esencia, las ventajas comparativas reveladas se basan en la idea de que los países tienden a especializarse en la producción y exportación de bienes y servicios en los que son relativamente más eficientes en comparación con otros países.
 
 Estas ventajas se revelan a través del comercio internacional y se pueden observar en los patrones de las exportaciones de un país en relación con sus competidores extranjeros. Se han usado medidas de ventaja comparativa revelada (VCR) para ayudar a evaluar el potencial de exportación de un país. La VCR indica si un país está en proceso de ampliar los productos en los que tiene potencial comercial, en contraposición a situaciones en las que el número de productos que se pueden exportar de manera competitiva es estático. También puede aportar información útil acerca de posibles perspectivas comerciales con nuevos asociados.En este caso no se analizará a nivel de paises sino de regiones.
 
+
+Donde:
+
+<Tex> VCRe =  ln[({\frac{a}{b}})/({\frac{c}{d}})]</Tex>
+
+-   <Row><Tex>X_{ij}</Tex> Corresponde a las exportaciones del producto i en la región j</Row>
 
 ## Obtención de datos:
 
@@ -271,11 +277,11 @@ def generate_other_dfs(df_region,df_chile,region_suffix):
 
 <Code language="python">
 def generate_other_dfs(df_region,df_chile,region_suffix):
-# Se quitan del dataframe aquellos valores vacíos (strings con espacios)
+    # Se quitan del dataframe aquellos valores vacíos (strings con espacios)
     df_chile = clean_codes_column(df_chile,"ITEM_SA")
     df_region = clean_codes_column(df_region,"ITEM_SA")   
-# Se transforman las columnas con los codigos arancelarios a númericas
 
+    # Se transforman las columnas con los codigos arancelarios a númericas
     df_region["ITEM_SA"] = pd.to_numeric(df_region["ITEM_SA"])
     df_chile["ITEM_SA"] = pd.to_numeric(df_chile["ITEM_SA"])
     
@@ -304,9 +310,23 @@ df_countries,df_pctges = generate_other_dfs(df_region,df_chile,'_LL')
 df_countries_updated = update_countries(df_countries)
 </Code>
 
+De aqui podemos guardar los datos relevantes para 
+
+<Code language="python">
+df_total = concatenate_dfs()
+df_region,df_chile = separate_dfs(df_total,10)
+df_final = calculate_RCAe(df_chile,df_region,'_LL')
+df_final = tariff_classification(df_final)
+df_rca = rca_frecuency(df_final)
+df_tabulated = tabulate_yearly_products(df_final)
+df_countries,df_pctges = generate_other_dfs(df_region,df_chile,'_LL')
+df_countries_updated = update_countries(df_countries)
+</Code>
+
+
 ## Visualizaciones :
 
-Por temas de mejor interacción ante la cantidad de datos , para responder las siguientes preguntas :
+
 
 -   ¿Qué?
 
@@ -322,3 +342,16 @@ Por temas de mejor interacción ante la cantidad de datos , para responder las s
 
 -   ¿Qué
 
+<PowerBi url="https://app.powerbi.com/view?r=eyJrIjoiNTQzZWQ5YTQtYzY5Zi00ZTU2LWE1YzctYzUzYmU3OGJmNDc0IiwidCI6IjA3OWIxMWNmLWJjYTEtNDQ2My04NmMyLTI5NjhmMjg0ZTE5ZSIsImMiOjR9">
+
+<Extra>
+
+Otro material que puede ser de ayuda:
+
+<ButtonUrl href="" callToAction="">
+
+El repositorio con todos los archivos y datos puede encontrarse en:
+
+<Repository repoName="">
+
+</Extra>

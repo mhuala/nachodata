@@ -12,8 +12,12 @@ import Note from "../Markdown/Note";
 import PowerBi from "../Markdown/PowerBI";
 import Url from "../Markdown/Url";
 import Extra from "../Markdown/Extra";
+import Tex from "../Markdown/Latex";
+import Row from "../Markdown/Row";
 
 
+import 'katex/dist/katex.min.css';
+import { InlineMath, BlockMath } from 'react-katex';
 
 const PostContent = ({ children }) => {
     const [visibleTableOfContent, setVisibleTableOfContent] = useState(false);
@@ -27,6 +31,10 @@ const PostContent = ({ children }) => {
         <>
             <div id="markdown" className="text-xl font-sans animate-fade-left">
                 {/* CONTENIDO post */}
+                <BlockMath
+    math={'\\int_0^\\infty x^2 dx \\inta'}
+    errorColor={'#cc0000'}
+  />
                 <Markdown
                     options={{
                         overrides: {
@@ -39,7 +47,9 @@ const PostContent = ({ children }) => {
                             Note: {component: Note},
                             Badge: {component: Badge},
                             Url:{component:Url},
-                            Extra: {component:Extra}
+                            Extra: {component:Extra},
+                            Tex: {component:Tex},
+                            Row: {component:Row}
                         },
                     }}
                 >

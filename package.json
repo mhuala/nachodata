@@ -27,6 +27,7 @@
     "react": "18.2.0",
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "18.2.0",
+    "react-katex": "^3.0.1",
     "react-player": "^2.12.0",
     "react-repo-card": "^2.0.1",
     "react-select": "^5.7.4",

@@ -5,6 +5,12 @@
 @tailwind components;
 @tailwind utilities;
 
+[data-testid|="react-katex"] {
+    width:auto;
+    display:flex;
+    padding:4px
+  }
+
 #final ::before{
     content: "";
 }
