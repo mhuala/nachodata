@@ -23,12 +23,27 @@ Las ventajas comparativas reveladas son un concepto económico que se utiliza pa
 
 Estas ventajas se revelan a través del comercio internacional y se pueden observar en los patrones de las exportaciones de un país en relación con sus competidores extranjeros. Se han usado medidas de ventaja comparativa revelada (VCR) para ayudar a evaluar el potencial de exportación de un país. La VCR indica si un país está en proceso de ampliar los productos en los que tiene potencial comercial, en contraposición a situaciones en las que el número de productos que se pueden exportar de manera competitiva es estático. También puede aportar información útil acerca de posibles perspectivas comerciales con nuevos asociados.En este caso no se analizará a nivel de paises sino de regiones.
 
+La formula utilizada, proviene del árticulo *Índice de ventaja comparativa revelada: un indicador del desempeño y de la competitividad productivo-comercial de un país* de Joaquín AriasSegura y Oswaldo Segura Ruiz del 2004. En dicho árticulo se utiliza la siguiente fórmula para el cálculo de este indice:
 
-Donde:
+<Tex> VCRe =  ln\left [\left ({\frac{a}{b}}\right )/\left ({\frac{c}{d}}\right )\right ]</Tex>
 
-<Tex> VCRe =  ln[({\frac{a}{b}})/({\frac{c}{d}})]</Tex>
+El significado de las variables presentes, en este caso de análisis correspondientes a países es el siguiente:
 
--   <Row><Tex>X_{ij}</Tex> Corresponde a las exportaciones del producto i en la región j</Row>
+<Row><Tex>X_{ij}</Tex>: Corresponde a las exportaciones del producto i en el país j.</Row>
+<Row><Tex>X_{tj}</Tex>: Corresponde a las exportaciones totales la región j.</Row>
+<Row><Tex>X_{im}</Tex>: Corresponde a las exportaciones del producto i en el mundo.</Row>
+<Row><Tex>X_{tm}</Tex>: Corresponde a las exportaciones totales en el mundo.</Row>
+
+El contenido de este post busca calcular el VCRe de los prodcutos exportados por la Región de Aysén por lo que la fórmula queda de la siguiente forma.
+
+<Tex> VCRe =  ln\left [\left ({\frac{a}{b}}\right )/\left ({\frac{c}{d}}\right )\right ]</Tex>
+
+En dónde se extrapolan las variables de el país a analizar a sus regiones, así como las correspondientes al mundos al país al que pertenecen dichas regiones de la siguiente forma:
+
+<Row><Tex>X_{ij}</Tex>: Corresponde a las exportaciones del producto i en la región j.</Row>
+<Row><Tex>X_{tj}</Tex>: Corresponde a las exportaciones totales la región j.</Row>
+<Row><Tex>X_{im}</Tex>: Corresponde a las exportaciones del producto i en el mundo.</Row>
+<Row><Tex>X_{tm}</Tex>: Corresponde a las exportaciones totales en el mundo.</Row>
 
 ## Obtención de datos:
 
@@ -56,7 +71,7 @@ def concatenate_dfs():
     return concatenated_dfs
 </Code>
 
-También, en el caso de los análisis a nivel regional deberemos poder tener los datos de todos los años de una región en particular filtrados del DataFrame con los datos de todos los años obtenido con la función anterior, para esto generaremos una función que permita separar del DataFrame total en dos, un DataFrame igual al original y otro que contenga los datos de la región a analizar.
+También, para poder realizar un análisis a nivel regional deberemos poder tener los datos de todos los años de una región en particular filtrados del DataFrame con los datos de todos los años obtenido con la función anterior, para esto generaremos una función que permita separar el DataFrame total en dos, un DataFrame igual al original y otro que contenga los datos de la región a analizar.
 
 <Code language="python">
 def separate_dfs(df,cod_region):
@@ -71,7 +86,7 @@ def separate_dfs(df,cod_region):
     return df_region,df_chile
 </Code>
 
-También para la posterior transformación de códigos de países a los países originales se deberán remapear todos los códigos correspondientes al país al que apuntan. Para esto también se crea una función.
+Por otra parte, será importante saber a qué países se realizan las exportaciones de la región. Por esto se crae una función que transforma los códigos de países a los países originales, se deberán remapear todos los códigos correspondientes al país al que apuntan.
 
 <Code language="python">
 def update_countries(df_countries):
@@ -200,7 +215,7 @@ def rca_frecuency(df):
     return df_rca
 </Code>
 
-También resulta interesante poder saber la cantidad total de productos, por cada sección arancelaria, exportados por una región en un determinado.
+Resulta interesante poder saber la cantidad total de productos, por cada sección arancelaria, exportados por una región en un determinado año. Para esto se crea la siguiente función:
 
 <Code language="python">
 def tabulate_yearly_products(df):
@@ -225,7 +240,8 @@ def tabulate_yearly_products(df):
 
 ### Análisis: Exportaciones a paises.
 
-Otro de los análisis que derivan de los datos de exportaciones es
+Previo a la generación de los DataFrames que contienen los porcentajes y cantidad se encapsula en la siguiente función que tiene por cometido eliminar los valores nulos de una columna. 
+
 <Code language="python">
 def clean_codes_column(df,column):
     errors_df = df[pd.to_numeric(df[column],errors='coerce').isnull()]
@@ -233,6 +249,7 @@ def clean_codes_column(df,column):
     return new_df
 </Code>
 
+La última función en ser declarada, es aquella que permite obtener los DataFrame que otorgarán información sobre a qué países
 
 <Code language="python">
 def generate_other_dfs(df_region,df_chile,region_suffix):
@@ -274,73 +291,45 @@ def generate_other_dfs(df_region,df_chile,region_suffix):
     return df_countries,df_pctges
 </Code>
 
-
-<Code language="python">
-def generate_other_dfs(df_region,df_chile,region_suffix):
-    # Se quitan del dataframe aquellos valores vacíos (strings con espacios)
-    df_chile = clean_codes_column(df_chile,"ITEM_SA")
-    df_region = clean_codes_column(df_region,"ITEM_SA")   
-
-    # Se transforman las columnas con los codigos arancelarios a númericas
-    df_region["ITEM_SA"] = pd.to_numeric(df_region["ITEM_SA"])
-    df_chile["ITEM_SA"] = pd.to_numeric(df_chile["ITEM_SA"])
-    
-    # Se clasifican según el codigo arancelario los productos por grupo arancelario
-    df_region = tariff_classification(df_region)
-    df_chile = tariff_classification(df_chile)
-    
-    # DF con información de los productos ordenados por año, país y grupo arancelario teniendo la cantidad total de tipos de articulos exportados,
-    # la cantidad de mercancia en unidades, el peso bruto en kg y el total de dolares en FOB
-    df_countries_reg = df_region.groupby(["PERIODO","COD_PAIS_DESTINO","GRUPO_ARANCELARIO"],as_index=False).agg({"ITEM_SA": 'count',"CANTIDAD_MERCANCIA":'sum',"PESO_BRUTO_KG":"sum","FOB_US_IVV": 'sum'})
-    df_countries_chile = df_chile.groupby(["PERIODO","COD_PAIS_DESTINO","GRUPO_ARANCELARIO"],as_index=False).agg({"ITEM_SA": 'count',"CANTIDAD_MERCANCIA":'sum',"PESO_BRUTO_KG":"sum","FOB_US_IVV": 'sum'})
-    
-    return df_countries,df_pctges
-</Code>
-
 ## Utilización de funciones
 
+El orden en el que se utilizan las funciones declaradas para obtener los diferentes DataFrames que serán utiles a posteriore para distintos análisis, es el siguiente.
+
 <Code language="python">
 df_total = concatenate_dfs()
-df_region,df_chile = separate_dfs(df_total,10)
-df_final = calculate_RCAe(df_chile,df_region,'_LL')
+df_region,df_chile = separate_dfs(df_total,11)
+df_final = calculate_RCAe(df_chile,df_region,'_AY')
 df_final = tariff_classification(df_final)
 df_rca = rca_frecuency(df_final)
 df_tabulated = tabulate_yearly_products(df_final)
-df_countries,df_pctges = generate_other_dfs(df_region,df_chile,'_LL')
+df_countries,df_pctges = generate_other_dfs(df_region,df_chile,'_AY)
 df_countries_updated = update_countries(df_countries)
 </Code>
 
-De aqui podemos guardar los datos relevantes para 
+De aquí, los DataFrames relevantes son cinco y deben guardarse de la siguiente manera para poder trabajar con PowerBi.
 
 <Code language="python">
-df_total = concatenate_dfs()
-df_region,df_chile = separate_dfs(df_total,10)
-df_final = calculate_RCAe(df_chile,df_region,'_LL')
-df_final = tariff_classification(df_final)
-df_rca = rca_frecuency(df_final)
-df_tabulated = tabulate_yearly_products(df_final)
-df_countries,df_pctges = generate_other_dfs(df_region,df_chile,'_LL')
-df_countries_updated = update_countries(df_countries)
+df_tabulated.to_csv('rca_tabulated_exp.csv', index = False, sep = ";", decimal = ",")
+df_rca.to_csv('rca_frecuency_exp.csv', index = False, sep = ";", decimal = ",")
+df_countries_updated.to_csv('df_countries_exp.csv', index = False, sep = ";", decimal = ",")
+df_pctges.to_csv('df_pctges.csv', index = False, sep = ";", decimal = ",")
+df_final.to_csv('df_final.csv', index = False, sep = ";", decimal = ",")
 </Code>
 
 
 ## Visualizaciones :
 
+Finalmente con todos los datos a la mano en el formato requerido, se pueden responder preguntas como:
 
+-   ¿Cómo se han comportado las exportaciones totales de la región?
 
--   ¿Qué?
+-   ¿Qué cantidad de articulos por sección arancelaria poseen un buen VCRe?
 
--   ¿Qué?
+-   ¿Existe una matriz productiva variada en la región?
 
--   ¿Qué?
+-   ¿Existe variedad en las exportacione?
 
--   ¿Qué?
-
--   ¿Qué?
-
--   ¿Qué?
-
--   ¿Qué
+-   ¿Hacia dónde van los productos exportados, de qué sección arancelaria son?
 
 <PowerBi url="https://app.powerbi.com/view?r=eyJrIjoiNTQzZWQ5YTQtYzY5Zi00ZTU2LWE1YzctYzUzYmU3OGJmNDc0IiwidCI6IjA3OWIxMWNmLWJjYTEtNDQ2My04NmMyLTI5NjhmMjg0ZTE5ZSIsImMiOjR9">
 
@@ -348,10 +337,13 @@ df_countries_updated = update_countries(df_countries)
 
 Otro material que puede ser de ayuda:
 
-<ButtonUrl href="" callToAction="">
+<ButtonUrl href="https://www.researchgate.net/publication/272167573_Indice_de_ventaja_comparativa_revelada_un_indicador_del_desempeno_y_de_la_competitividad_productivo-comercial_de_un_pais" callToAction="Articulo sobre VCRe N°1">
+<ButtonUrl href="https://www.redalyc.org/pdf/3607/360733606002.pdf" callToAction="Articulo sobre VCRe N°2">
+<ButtonUrl href="https://www.aduana.cl/arancel-aduanero-vigente/aduana/2016-12-30/090118.html" callToAction="Secciones Arancelarias">
+<ButtonUrl href="http://www.sice.oas.org/Trade/CHL_HKG_FTA/ESP/Lista-Aranceles-Chile.pdf" callToAction="Códigos Arancelarios Chile">
 
 El repositorio con todos los archivos y datos puede encontrarse en:
 
-<Repository repoName="">
+<Repository repoName="analisis-exportaciones">
 
 </Extra>

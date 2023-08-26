@@ -9,15 +9,11 @@ import ButtonUrl from "../Markdown/ButtonUrl";
 import Repository from "../Markdown/Repository";
 import Badge from "../Markdown/Badge";
 import Note from "../Markdown/Note";
-import PowerBi from "../Markdown/PowerBI";
+import PowerBi from "../Markdown/PowerBi";
 import Url from "../Markdown/Url";
 import Extra from "../Markdown/Extra";
 import Tex from "../Markdown/Latex";
 import Row from "../Markdown/Row";
-
-
-import 'katex/dist/katex.min.css';
-import { InlineMath, BlockMath } from 'react-katex';
 
 const PostContent = ({ children }) => {
     const [visibleTableOfContent, setVisibleTableOfContent] = useState(false);
@@ -31,11 +27,7 @@ const PostContent = ({ children }) => {
         <>
             <div id="markdown" className="text-xl font-sans animate-fade-left">
                 {/* CONTENIDO post */}
-                <BlockMath
-    math={'\\int_0^\\infty x^2 dx \\inta'}
-    errorColor={'#cc0000'}
-  />
-                <Markdown
+               <Markdown
                     options={{
                         overrides: {
                             Code: { component: Code },

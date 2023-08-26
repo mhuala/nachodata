@@ -1,8 +1,8 @@
 const Row = ({children}) => {
     return (
-        <p className="flex items-center">
+        <section id="latex" className="flex items-center">
             {children}
-        </p>
+        </section>
     );
 }
 
