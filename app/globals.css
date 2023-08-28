@@ -35,11 +35,14 @@
     padding-bottom:16px;
 }
 
-#markdown li p::before{
+#markdown li::before{
     content:"•";
-    margin-right:12px
 }
 
+#markdown li{
+    margin-top:6px;
+    margin-bottom:6px
+}
 
 #markdown h2::before{
     content:"👇🏼";
@@ -64,14 +67,13 @@
 #markdown li{
     display: flex;
     orientation: row;
-    margin-left:32px;
-    gap:48px
+    gap:16px
 }
 
 #markdown h2 { 
     border: #cbe8f0;
-    border-style: dotted;
-    border-width: 4px;
+    border-style: groove;
+    border-width: 2px;
     display:flex;
     flex-direction: row;
     align-items: center;

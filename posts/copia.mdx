@@ -1,6 +1,6 @@
 ---
-id: 3
-title: Analisis túrismo basado en Instagram
+id: 4
+title: Copia
 author: Nacho Huala
 time: "11"
 date: 01/08/2023
@@ -26,6 +26,11 @@ En los ultimos años ha sido de bastante interés
 
 Ampliamente estudiado y analizado por distintos medios e instituciones.
 
+-   ["Beyond User Gaze: How Instagram Creates Tourism Destination Brand"](https://www.researchgate.net/publication/286530462_Beyond_User_Gaze_How_Instagram_Creates_Tourism_Destination_Brand)
+-   ["How Instagram has changed the tourism and travel industry"](https://www.dw.com/en/how-instagram-changed-the-tourism-industry/a-65348690)
+-   ["The Impact of Insta Tourism on Tourism Decision Making of Generation Y](https://jaauth.journals.ekb.eg/article_159153_d9ef1f2a64221346e3cae8bf5ad3554e.pdf)
+-   ["Exploring the influence of Instagram on travel destination choice"](https://www.researchgate.net/publication/360142299_Exploring_the_influence_of_Instagram_on_travel_destination_choice)
+
 En Chile aún se está al debe respecto a analisis en esta materia, lo único cercano a un análisis basado en datos de RRSS es lo realizado por el
 ["Observatorio Turístico BIG DATA - Región Metropolitana"](http://dataturismorm.cl/demanda-turistica.html) en dónde se menciona en una visualización de valores obtenidos de analisis de sentimiento sin mayores detalles que:
 
@@ -40,7 +45,7 @@ Años atrás traté de proponer (fallidamente) como tema de tesis algo relaciona
 
 El cómo fueron obtenidos estos datos, no tiene una explicación relevante puesto que los terminos de condiciones de Instagram así como las barreras de seguridad interpuestas por la misma compañía a la hora de comunicarse con sus servidores ha cambiado drásticamente desde 2019.
 
-<ButtonUrl href="https://github.com/mhuala/Instagram-posts-on-tourism-prediction-Valdivia/tree/main/Datos">Datos utilizados</ButtonUrl>
+<ButtonUrl href="https://github.com/mhuala/Instagram-posts-on-tourism-prediction-Valdivia/tree/main/Datos">Datos utilizados</BadgeUrl>
 
 ## Por qué es tan dificil scrapear masivamente Instagram en la actualidad ?
 
@@ -193,7 +198,8 @@ Se crea nuevo dataframe con los valores para cada mes, finalmente se deja la col
 
 <Code language="python">
 years_list = [x for x in range(2012,2021)]
-d = {'Year': years_list ,
+
+d = {'Year': years_list , 
      'Jan': month_post_recorder(1) ,
      'Feb': month_post_recorder(2) ,
      'Mar': month_post_recorder(3) ,
@@ -206,7 +212,6 @@ d = {'Year': years_list ,
      'Oct': month_post_recorder(10) ,
      'Nov': month_post_recorder(11) ,
      'Dec': month_post_recorder(12) }
-
 post_per_month = pd.DataFrame(data=d)
 post_per_month = post_per_month.set_index('Year')
 </Code>
@@ -215,7 +220,7 @@ Con la librería Seaborn se puede grafucar la serie de tiempo que muestra las pu
 
 <Code language="python">
 fig,axes=plt.subplots(1,2, figsize=(15, 5))
-# 
+
 with sns.axes_style("darkgrid"):
     sns.lineplot(data=post_per_month,ax=axes[1])
     axes[1].set_title('Publicaciones de cada mes por año')
@@ -225,9 +230,9 @@ with sns.axes_style("darkgrid"):
     axes[0].grid(True)
 </Code>
 
-<Photo postId="3" fileName="1"/>
+**GRAFICOS1.PNG**
 
-Con el fin de tratar de inferir quienes de las personas que publican son turistas que visitan la Región, se propone la siguiente solución.
+on el fin de tratar de inferir quienes de las personas que publican son turistas que visitan la Región, se propone la siguiente solución.
 
 Al fin de estimar el rango de tiempo que está un turista extranjero en Chile se indaga en los datos otorgados por la Subsecretaría de Turismo en la planilla llamada Gasto, Permanencia Promedio e Ingreso de Divisas de los turistas extranjeros que visitan Chile. Serie 2001-2016 y vemos que no pasa más allá de 14 días como promedio máximo a lo largo de los años .
 
@@ -248,23 +253,39 @@ Usando la librería Seaborn se puede ver como se distribuyen los días de difere
 
 <Code language="python">
 fig,axes=plt.subplots(1,2, figsize=(15, 5))
+
+
 #Grafico 1
-sns.distplot(first_and_last['diff_days'],kde = True,rug=True, color = 'darkblue', hist_kws={'edgecolor':'black'},kde_kws={'linewidth': 3},ax=axes[0])
-#Grafico 2
-sns.distplot(first_and_last['diff_days'], hist=True, kde=False, color = 'darkblue', hist_kws={'edgecolor':'black'},kde_kws={'linewidth': 3},bins=50,ax = axes[1])
-# Configuraciones del gráfico
-plt.grid(True)
-plt.xlim(0, 500)
-# Configuración de titulos
+sns.distplot(first_and_last['diff_days'],
+             kde = True,
+             rug=True, 
+             color = 'darkblue', 
+             hist_kws={'edgecolor':'black'},
+             kde_kws={'linewidth': 3},
+             ax=axes[0])
+
 axes[0].set_title('Días entre primera y última publicación (Densidad)')
 axes[0].grid(True)
+
+
+#Grafico 2
+sns.distplot(first_and_last['diff_days'], hist=True, kde=False, 
+             color = 'darkblue', 
+             hist_kws={'edgecolor':'black'},
+             kde_kws={'linewidth': 3},
+             bins=50,
+             ax = axes[1])
+plt.grid(True)
+plt.xlim(0, 500)
+
+
 axes[1].set_title('Días entre primera y última publicación (Histograma Zoom-In)')
 axes[1].grid(True)
-# Creación de la imagen
+plt.xlim(0, 500)
 plt.show()
 </Code>
 
-<Photo postId="3" fileName="2"/>
+**GRAFICO2.PNG**
 
 Se puede ver el promedio de publicaciones por personas, dividiendo el total de registros unicos del primer df_ig luego de eliminar los duplicados , con el de cualquier columna del dataframe first_and_last (que representa la cantidad de usuarios unicos que hay entre todas las publicaciones), finalmente se divide 1 en ese cociente.
 
@@ -274,14 +295,30 @@ prom = 1/r_1
 print(f"Promedio:{prom}") 
 #Promedio: 5.423
 </Code>
+
 Ahora que se tiene un dataframe con la diferencia de días que tiene cada usuario entre su primera y ultima publicación, se puede crear una mascara (mask) que permita "filtrar" y solo queden los usuarios que tienen una diferencía de días entre su primera y ultima publicaicón menor o igual a 14 días que fue lo planteado anteriormente.
 
-<Code>
-mask = (first_and_last['diff_days'] <= 14)
-first_and_last_tourist = first_and_last[mask]
-r_2 = first_and_last_tourist.shape[0]/len(first_and_last.index)*100
-print(f"Porcentaje de clasisifados como turistas : {r_2}%")
-#r_2 = 69.445%
-</Code>
+# Qué se puede hacer con los datos ?
 
-Ya teniendo un dataframe solo con usuarios que cumplen este requisito de Turismo se procede a crear una columna con un 1, para representar que hay 1 turista en cada registro y luego agruparlos por mes (tal como se ha trabajado todos los otros dataframes) finalmente sumandolos
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+-   ¿Qué?
+
+<Extra>
+
+<ButtonUrl href="https://www.researchgate.net/publication/286530462_Beyond_User_Gaze_How_Instagram_Creates_Tourism_Destination_Brand">Articulo N°1</ButtonUrl>
+<ButtonUrl href="https://jaauth.journals.ekb.eg/article_159153_d9ef1f2a64221346e3cae8bf5ad3554e.pdf">Articulo N°2</ButtonUrl> 
+<ButtonUrl href="https://www.dw.com/en/how-instagram-changed-the-tourism-industry/a-65348690">Articulo N°3</ButtonUrl> 
+<ButtonUrl href="https://www.researchgate.net/publication/360142299_Exploring_the_influence_of_Instagram_on_travel_destination_choice">Articulo N°4</ButtonUrl> 
+
+<Repository repoName="Instagram-posts-on-tourism-prediction-Valdivia">
+
+</Extra>
