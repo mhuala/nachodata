@@ -4,7 +4,7 @@ title: Analisis túrismo basado en Instagram
 author: Nacho Huala
 time: "11"
 date: 01/08/2023
-tags: [pandas, mongodb, python]
+tags: [pandas,seaborn, python]
 description: ¿Pueden las publicaciones de Instagram ser usadas para analizar la actividad turística de una locación?
 bannerURL: https://webunwto.s3.eu-west-1.amazonaws.com/2021-11/unwto-and-instagram-partner-to-help-destinations-recover-and-rediscover_1.jpg
 ---
@@ -276,7 +276,7 @@ print(f"Promedio:{prom}")
 </Code>
 Ahora que se tiene un dataframe con la diferencia de días que tiene cada usuario entre su primera y ultima publicación, se puede crear una mascara (mask) que permita "filtrar" y solo queden los usuarios que tienen una diferencía de días entre su primera y ultima publicaicón menor o igual a 14 días que fue lo planteado anteriormente.
 
-<Code>
+<Code language="python">
 mask = (first_and_last['diff_days'] <= 14)
 first_and_last_tourist = first_and_last[mask]
 r_2 = first_and_last_tourist.shape[0]/len(first_and_last.index)*100
@@ -284,4 +284,82 @@ print(f"Porcentaje de clasisifados como turistas : {r_2}%")
 #r_2 = 69.445%
 </Code>
 
-Ya teniendo un dataframe solo con usuarios que cumplen este requisito de Turismo se procede a crear una columna con un 1, para representar que hay 1 turista en cada registro y luego agruparlos por mes (tal como se ha trabajado todos los otros dataframes) finalmente sumandolos
+Ya teniendo un dataframe solo con usuarios que cumplen este requisito de Turismo se procede a crear una columna con un 1, para representar que hay 1 turista en cada registro y luego agruparlos por mes (tal como se ha trabajado todos los otros dataframes) finalmente sumandolos.
+
+<Code language="python">
+first_and_last_tourist['post_count']=1
+sf = first_and_last_tourist.resample('M', on='first')['post_count'].sum()
+time_serie_tourists = pd.DataFrame({'date':sf.index, 'total':sf.values})
+</Code>
+
+Al visualizar estos datos se puede ver como al aplicar este filtro el comportamiento de la serie de tiempo cambia drasticamente y toma un caracter mas estacionario , como la actividad turistica.
+
+<Code language="python">
+fig,axes=plt.subplots(1,2, figsize=(15, 5))
+# Creación de gráfico
+with sns.axes_style("darkgrid"):
+    sns.lineplot(data=time_serie_tourists, x="date",y="total",ax=axes[1])
+    axes[1].set_title('Publicaciones a lo largo del tiempo "TURISTAS"')
+    axes[1].grid(True)
+    sns.lineplot(data=time_serie, x="date", y="post_count", ax=axes[0])
+    axes[0].set_title('Publicaciones a lo largo del tiempo TOTAL')
+    axes[0].grid(True)
+</Code>
+
+<Photo postId="3" fileName="4"/>
+
+Ahora ya teniendo todos los datos limpios y en un mismo formato de fechas, se puede crear un dataframe final el cual contendrá la información de todos los dataframes cargados inicialmente además de la información sobre las publicaciones a lo largo del tiempo con el filtro de los 14 días para Turistas.
+
+Primero se crea una función llamadacut_dates() que permitirá obtener los datos comprendidos entre 2014 y 2020 de cada dataframe inicial.
+
+<Code language="python">
+def cut_dates(df):
+    df =df.loc[df['date']>='2014']
+    df =df.loc[df['date']<'2020']
+    return df 
+</Code>
+
+Posteriormente se aplica la función a los dataframes iniciales, para finalmente utilizando merge() poder unirlos usando como unión la fila de las fechas creando un dataframe final sobre el cual se analizará si existen correlaciones lineales.
+
+<Code language="python">
+df_imacec = cut_dates(df_imacec)
+time_serie_tourists = cut_dates(time_serie_tourists)
+df_usd = cut_dates(df_usd)
+df_gt = cut_dates(df_gt)
+df_emat = cut_dates(df_emat)
+df_clima = cut_dates(df_clima)
+df_list = [df_imacec,time_serie_tourists,df_usd,df_gt,df_emat,df_clima]
+</Code>
+
+<Code language="python">
+final = pd.merge(df_imacec, time_serie_tourists, how='outer', on='date')
+final = pd.merge(final, df_usd, how='outer', on='date')
+final = pd.merge(final, df_gt, how='outer', on='date')
+final = pd.merge(final, df_emat, how='outer', on='date')
+final = pd.merge(final, df_clima, how='outer', on='date')
+final.rename(columns={'total_x':'tourists_posts','total_y':'dolar_price'} , inplace=True)
+</Code>
+
+En este punto con el DataFrame final listo, ya se puede analizar si existe una correlación entre los datos de la EMAT: Encuesta Mensual de Alojamiento Túristico con la cantidad de publicaciones generadas en Instagram sobre un lugar y las tendencias de busqueda en Google. Para ello aplicamos el siguiente código.
+
+<Code language="python">
+fig, ax = plt.subplots(figsize=(15,15)) 
+sns.heatmap(final.corr(), annot = True, vmin=-1, vmax=1, center= 0,linewidths=.5, ax=ax)
+</Code>
+
+<Photo postId="3" fileName="5"/>
+
+Se pueden ver las correlaciones de las variables de llegadas totales (LL_TOT) y pernoctaciones totales (PER_TOT) presentes en la EMAT con otras variables como :
+*   LL_TOT: TMAX = 0.61 , TP = 0.58, google_trends = 0.73, tourists_posts = 0.67
+*   PER_TOT:TMAX = 0.61 , TP = 0.56, google_trends = 0.72, tourists_posts = 0.68
+
+<Extra>
+Otro material que puede ser de ayuda:
+
+<ButtonUrl href="https://estadisticas.sed.srcei.cl" callToAction="Página registro civil"/>
+<ButtonUrl href="https://playwright.dev/python/docs/intro" callToAction="Documentación Playwright"/>
+
+El repositorio con todos los archivos puede ser encontrado en:
+
+<Repository repoName="Instagram-posts-on-tourism-prediction-Valdivia"/>
+</Extra>
