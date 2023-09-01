@@ -79,8 +79,8 @@
     align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
-    font-family: var(--font-lulo);
-    background-color: #262626;
+    font-family: var(--font-latobold);
+    background-color: #300c4e;
     padding:16px;
     margin-left:4px
 }
@@ -94,7 +94,7 @@
     align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
-    font-family: var(--font-lulo);
+    font-family:var(--font-latobold);
     background-color: #262626;
     padding:16px;
     margin-left:4px
@@ -109,7 +109,7 @@
     align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
-    font-family: var(--font-lulo);
+    font-family: var(--font-latobold);
     background-color: #262626;
     padding:16px;
     margin-left:4px
@@ -124,7 +124,7 @@
     align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
-    font-family: var(--font-lulo);
+    font-family: var(--font-latobold);
     background-color: #262626;
     padding:16px;
     margin-left:4px

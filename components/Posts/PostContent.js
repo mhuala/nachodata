@@ -25,7 +25,7 @@ const PostContent = ({ children }) => {
 
     return (
         <>
-            <div id="markdown" className="text-xl font-sans animate-fade-left">
+            <div id="markdown" className="text-lg font-latoregular animate-fade-left">
                 {/* CONTENIDO post */}
                <Markdown
                     options={{

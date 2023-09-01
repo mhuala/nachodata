@@ -23,10 +23,32 @@ const lulo = localFont({
     variable: "--font-lulo"
 })
 
+const latobold = localFont({
+    src:[
+    {
+        path: "../public/fonts/Lato-Bold.ttf",
+        weight: "600",
+        style: "bold"
+    }
+],
+    variable: "--font-latobold"
+})
+
+const latoregular = localFont({
+    src:[
+    {
+        path: "../public/fonts/Lato-Regular.ttf",
+        weight: "100",
+        style: "normal"
+    }
+],
+    variable: "--font-latoregular"
+})
+
 
 export default async function RootLayout({ children }) {
     return (
-        <html lang="en" className={`${lulo.variable}`}>
+        <html lang="en" className={`${lulo.variable} ${latobold.variable}  ${latoregular.variable}`}>
             <Head>
                 <meta charset="UTF-8" />
                 <link
