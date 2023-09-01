@@ -9,40 +9,36 @@ description: ¿Pueden las publicaciones de Instagram ser usadas para analizar la
 bannerURL: https://webunwto.s3.eu-west-1.amazonaws.com/2021-11/unwto-and-instagram-partner-to-help-destinations-recover-and-rediscover_1.jpg
 ---
 
-# Dé que se trata?
+## Dé que se trata?
 
-En los ultimos años ha sido de bastante interés
+En los ultimos años ha sido de bastante interés el estudio y análisis de cómo la industria del turismo se ha visto influenciada y potenciada con las redes sociales, el hecho de "tener la foto" en un lugar conocido o popular en RRSS ha hecho que incluso gobiernos destinen fondos a publicitar sus bondades y locaciones en las redes. Esto ha sido ampliamente estudiado y analizado por distintos medios e instituciones. 
 
--
--
-
--
--
-
--
--
-
--
-
-Ampliamente estudiado y analizado por distintos medios e instituciones.
+-   <Url href="https://www.researchgate.net/publication/286530462_Beyond_User_Gaze_How_Instagram_Creates_Tourism_Destination_Brand">Beyond User Gaze: How Instagram Creates Tourism Destination Brand?</Url>
+-   <Url href="https://www.trekksoft.com/en/blog/how-instagram-has-changed-the-tourism-and-travel-industry">How Instagram has changed the tourism and travel industry</Url>
+-   <Url href="https://www.nationalgeographic.com/travel/travel-interests/arts-and-culture/how-instagram-is-changing-travel/">How Instagram Is Changing Travel</Url>
+-   <Url href="https://www.diva-portal.org/smash/get/diva2:1360716/FULLTEXT03.pdf">The role of instagram in choosing a travel destination</Url>
+-   <Url href="https://www.dw.com/en/how-instagram-changed-the-tourism-industry/a-65348690">How instagram changed the tourism industry</Url>
 
 En Chile aún se está al debe respecto a analisis en esta materia, lo único cercano a un análisis basado en datos de RRSS es lo realizado por el
-["Observatorio Turístico BIG DATA - Región Metropolitana"](http://dataturismorm.cl/demanda-turistica.html) en dónde se menciona en una visualización de valores obtenidos de analisis de sentimiento sin mayores detalles que:
+<Url href="http://dataturismorm.cl/demanda-turistica.html">Observatorio Turístico BIG DATA - Región Metropolitana"</Url> en dónde se menciona en una visualización de valores obtenidos de analisis de sentimiento sin mayores detalles que:
 
 "Las visitas a los principales atractivos de la Región Metropolitana, es monitoreado en redes sociales a través de las publicaciones de los usuarios."
 
 Años atrás traté de proponer (fallidamente) como tema de tesis algo relacionado al análisis de datos de publicaciones realizadas en Valdivia, antes de siquiera proponerlo en la etapa inicial pensaba que era importante demostrar alguna correlación de algún tipo entre el comportamiento de las publicaciones y alguna variable de interés, las que seleccioné fueron las siguientes:
 
 -   Tendencias de Google Trends
--   X
+-   IMACEC
+-   Dolar histórico
+-   Datos sobr el clima
+-   Datos de Encuesta Mensual de Alojamiento Turístico
 
-# Obtención de datos
+## Obtención de datos
 
 El cómo fueron obtenidos estos datos, no tiene una explicación relevante puesto que los terminos de condiciones de Instagram así como las barreras de seguridad interpuestas por la misma compañía a la hora de comunicarse con sus servidores ha cambiado drásticamente desde 2019.
 
-<ButtonUrl href="https://github.com/mhuala/Instagram-posts-on-tourism-prediction-Valdivia/tree/main/Datos">Datos utilizados</ButtonUrl>
+<ButtonUrl href="https://github.com/mhuala/Instagram-posts-on-tourism-prediction-Valdivia/tree/main/Datos" callToAction="Enlace de datos utilizados "/>
 
-## Por qué es tan dificil scrapear masivamente Instagram en la actualidad ?
+### Por qué es tan dificil scrapear masivamente Instagram en la actualidad ?
 
 Hasta los años 2019-2020 aún era posible extraer grandes volumenes de datos de Instagram, bastaba con realizar requests a los endpoints publicos que existían e ir iterando de alguna forma de "página a página", no era exactamente eso pero la lógica no variaba mucho.
 
@@ -52,7 +48,7 @@ Existían varios videos inclusive en Youtube que explicaban el cómo se debía h
 -   Se requiere de autenticación para acceder al sitio desde IPs de datacenters.
 -   Se requiere de autenticación para acceder al sitio desde IPs residenciales luego de unas cuantas peticiones/visitas.
 
-# Análisis de publicaciones:
+## Importaciones:
 
 Una vez descargados los datos del repositorio (disponibles en la sección de *material extra*), se puede empezar el análisis que parte con la importación de librerías necesarias.
 
@@ -75,7 +71,7 @@ df_emat = pd.read_csv('../Datos/Encuesta Mensual de Alojamiento Turistico (EMAT)
 df_ig = pd.read_csv('../Datos/Posts/valdivia_posts.csv')
 </Code>
 
-## IMACEC
+### IMACEC
 
 Para limpiar estos datos se debe usar la función apply() y dentro de esta utilizar las funciones datetime.strptime() y strftime() de esta manera se convierten las fechas que por defecto tienen el siguiente formato DD/MM/YYYY a uno de la forma YYYY-MM-DD que sea psoible trabajar con los metodos que posee un dato de tipo datetime
 
@@ -87,7 +83,7 @@ df_imacec["date"]= pd.to_datetime(df_imacec.date)
 df_imacec = df_imacec.loc[df_imacec['date'] >= '2014']
 </Code>
 
-## Google Trends
+### Google Trends
 
 Para limpiar estos datos se debe usar la función to_datetime() , debido a que este dataframe no posee los días y por defecto la función anterior retornará la fecha en el primer día de cada mes. Para arreglar esto y sumar a la fecha los días correspondientes en cada mes para que cada fecha quede en el ultimo día de su respectivo mes se puede hacer lo siguiente:
 
@@ -95,7 +91,7 @@ Para limpiar estos datos se debe usar la función to_datetime() , debido a que e
 -   Utilizar el metodo calendar.monthrange() para encontrar el último día de cada mes y además timedelta() para ir sumando esa cantidad de días a la fila actual.
 -   Se cambian los nombres de las columnas para facilitar su manejo.
 
-## Dolar histórico
+### Dolar histórico
 
 Para limpiar estos datos se debe usar la función to_datetime() , para convertir la columna de string a datetime
 
@@ -104,7 +100,7 @@ Para limpiar estos datos se debe usar la función to_datetime() , para convertir
 
 Finalmente se crea un nuevo dataframe con la serie obtenida con el metodo anterior.
 
-## Clima histórico
+### Clima histórico
 
 Para limpiar estos datos se debe usar la función to_datetime() , para convertir la columna de string a datetime
 
@@ -122,7 +118,7 @@ Finalmente este dataframe posee las siguientes variables :
 -   VISI : Visibilidad
 -   VV : Velocidad Viento
 
-## EMAT
+### EMAT
 
 Para limpiar estos datos se usa la función to_datetime(), para convertir la columna de string a datetime
 
@@ -138,7 +134,7 @@ Finalmente este dataframe posee las siguientes variables :
 -   PER_EXT: Pernoctaciones de extranjeros en la Región de los Ríos
 -   PER_TOT: Pernoctaciones totales en la Región de los Ríos
 
-## Instagram
+### Instagram
 
 Este dataframe viene listo en formato, las variables son las siguientes:
 
@@ -351,8 +347,8 @@ Se pueden ver las correlaciones de las variables de llegadas totales (LL_TOT) y 
 <Extra>
 Otro material que puede ser de ayuda:
 
-<ButtonUrl href="https://estadisticas.sed.srcei.cl" callToAction="Página registro civil"/>
-<ButtonUrl href="https://playwright.dev/python/docs/intro" callToAction="Documentación Playwright"/>
+<ButtonUrl href="https://www.youtube.com/watch?v=-3hCfDRkq9s" callToAction="Cómo scrapear instagram con Python- Año 2022 P"/>
+<ButtonUrl href="https://proxyscrape.com/blog/how-to-scrape-instagram-using-python" callToAction="Cómo scraper instagram en 2023 utilizando Proxys"/>
 
 El repositorio con todos los archivos puede ser encontrado en:
 

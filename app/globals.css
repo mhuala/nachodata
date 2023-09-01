@@ -45,22 +45,58 @@
 }
 
 #markdown h2::before{
-    content:"👇🏼";
-    margin-right:12px;
+    content:"💡";
+    margin-right:8px;
+    padding-bottom:4px
 }
+
 #markdown h3::before{
-    content:"👇🏼";
-    margin-right:12px;
+    content:"💡";
+    margin-right:8px;
+    padding-bottom:4px
 }
 
 #markdown h4::before{
-    content:"👇🏼";
-    margin-right:12px;
+    content:"💡";
+    margin-right:8px;
+    padding-bottom:4px
 }
 
 #markdown h5::before{
-    content:"👇🏼";
-    margin-right:12px;
+    content:"💡";
+    margin-right:8px;
+    padding-bottom:4px
+}
+
+#markdown h6::before{
+    content:"💡";
+    margin-right:8px;
+    padding-bottom:4px
+}
+
+#markdown h2::after{
+    content:"≪";
+    margin-left:4px;
+}
+
+#markdown h3::after{
+    content:"≪";
+    margin-left:4px;
+}
+
+#markdown h4::after{
+    content:"≪";
+    margin-left:4px;
+}
+
+#markdown h5::after{
+    content:"≪";
+    margin-left:4px;
+}
+
+#markdown h6::after{
+    content:"≪";
+    margin-left:4px;
 }
 
 
@@ -80,52 +116,52 @@
     margin-top: 14px;
     margin-bottom: 14px;
     font-family: var(--font-latobold);
-    background-color: #300c4e;
+    background-color: #2e2468;
     padding:16px;
     margin-left:4px
 }
 
 #markdown h3 {
     border: #cbe8f0;
-    border-style: dotted;
-    border-width: 4px;
+    border-style: groove;
+    border-width: 2px;
     display:flex;
     flex-direction: row;
     align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
-    font-family:var(--font-latobold);
-    background-color: #262626;
+    font-family: var(--font-latobold);
+    background-color: #2e2468;
     padding:16px;
     margin-left:4px
 }
 
 #markdown h4 {
     border: #cbe8f0;
-    border-style: dotted;
-    border-width: 4px;
+    border-style: groove;
+    border-width: 2px;
     display:flex;
     flex-direction: row;
     align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
     font-family: var(--font-latobold);
-    background-color: #262626;
+    background-color: #2e2468;
     padding:16px;
     margin-left:4px
 }
 
 #markdown h5 {
     border: #cbe8f0;
-    border-style: dotted;
-    border-width: 4px;
+    border-style: groove;
+    border-width: 2px;
     display:flex;
     flex-direction: row;
     align-items: center;
     margin-top: 14px;
     margin-bottom: 14px;
     font-family: var(--font-latobold);
-    background-color: #262626;
+    background-color: #2e2468;
     padding:16px;
     margin-left:4px
 }
